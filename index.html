@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MesEpreuves - Consultation d'épreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234361ee"/><path d="M0 0L100 100M100 0L0 100" stroke="%233a0ca3" stroke-width="2"/></svg>');
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Filtres Section */
+        .filters-section {
+            background-color: white;
+            padding: 2.5rem 0;
+            margin-top: -2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+        }
+
+        .filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .filter-select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background-color: white;
+            min-width: 200px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background-color: var(--gray);
+        }
+
+        .btn-reset:hover {
+            background-color: #5a6268;
+        }
+
+        /* Résultats Section */
+        .results-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+        }
+
+        .results-count {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .file-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .file-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .file-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-type {
+            background-color: var(--secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .file-body {
+            padding: 1.5rem;
+        }
+
+        .file-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .file-description {
+            color: var(--gray);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-outline {
+            padding: 8px 15px;
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Zone publicitaire AdMob */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-select {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .files-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+
+            .legal-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation pour les cartes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .file-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-file-alt"></i>
+                <span>MesEpreuves</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Consultez vos épreuves d'examen</h1>
+            <p>Des centaines d'épreuves disponibles pour les étudiants et élèves. Filtrez par niveau et matière pour trouver exactement ce dont vous avez besoin.</p>
+        </div>
+    </section>
+
+    <!-- Filtres Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="niveau"><i class="fas fa-graduation-cap"></i> Niveau d'étude</label>
+                    <select id="niveau" class="filter-select">
+                        <option value="">Sélectionnez un niveau</option>
+                        <option value="bepc">BEPC</option>
+                        <option value="bac">Baccalauréat</option>
+                        <option value="licence">Licence</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="matiere"><i class="fas fa-book"></i> Matière</label>
+                    <select id="matiere" class="filter-select" disabled>
+                        <option value="">Choisissez d'abord un niveau</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="niveauEtude"><i class="fas fa-layer-group"></i> Niveau</label>
+                    <select id="niveauEtude" class="filter-select">
+                        <option value="">Tous les niveaux</option>
+                        <option value="L1">Licence 1</option>
+                        <option value="L2">Licence 2</option>
+                        <option value="L3">Licence 3</option>
+                    </select>
+                </div>
+                
+                <button id="appliquerFiltres" class="btn">
+                    <i class="fas fa-filter"></i> Appliquer les filtres
+                </button>
+                
+                <button id="reinitialiserFiltres" class="btn btn-reset">
+                    <i class="fas fa-redo"></i> Réinitialiser
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Résultats Section -->
+    <section class="results-section">
+        <div class="container">
+            <h2 class="section-title">Épreuves disponibles</h2>
+            <div class="results-count" id="resultsCount">15 épreuves trouvées</div>
+            
+            <div class="files-grid" id="filesGrid">
+                <!-- Les épreuves seront ajoutées ici dynamiquement -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des matières par niveau
+        const matieresParNiveau = {
+            bepc: [
+                { id: 'francais', nom: 'Français' },
+                { id: 'math', nom: 'Mathématiques' },
+                { id: 'histoiregeo', nom: 'Histoire-Géographie' },
+                { id: 'svt', nom: 'SVT' },
+                { id: 'anglais', nom: 'Anglais' },
+                { id: 'physique', nom: 'Physique-Chimie' }
+            ],
+            bac: [
+                { id: 'anglais', nom: 'Anglais' },
+                { id: 'espagnol', nom: 'Espagnol' },
+                { id: 'svt', nom: 'SVT' },
+                { id: 'math', nom: 'Mathématiques' },
+                { id: 'francais', nom: 'Français' },
+                { id: 'philo', nom: 'Philosophie' },
+                { id: 'histoiregeo', nom: 'Histoire-Géographie' },
+                { id: 'pct', nom: 'Physique-Chimie-Technologie' }
+            ],
+            licence: [
+                { id: 'anglais', nom: 'Anglais' },
+                { id: 'espagnol', nom: 'Espagnol' },
+                { id: 'socio', nom: 'Sociologie' },
+                { id: 'geo', nom: 'Géographie' }
+            ]
+        };
+
+        // Données des épreuves (simulées)
+        const epreuves = [
+            // Épreuves BEPC
+            { 
+                id: 1, 
+                titre: "BEPC Français 2023", 
+                niveau: "bepc", 
+                matiere: "francais", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "1.5 MB",
+                description: "Épreuve de français du BEPC 2023. Grammaire, conjugaison et rédaction.",
+                url: "bepc-francais-2023.html"
+            },
+            { 
+                id: 2, 
+                titre: "BEPC Mathématiques 2023", 
+                niveau: "bepc", 
+                matiere: "math", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "1.8 MB",
+                description: "Épreuve de mathématiques du BEPC 2023. Géométrie, algèbre et problèmes.",
+                url: "bepc-mathematiques-2023.html"
+            },
+            { 
+                id: 3, 
+                titre: "BEPC Histoire-Géographie 2023", 
+                niveau: "bepc", 
+                matiere: "histoiregeo", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "2.1 MB",
+                description: "Épreuve d'histoire-géographie du BEPC 2023. Questions et étude de documents.",
+                url: "bepc-histoire-geo-2023.html"
+            },
+            { 
+                id: 4, 
+                titre: "BEPC SVT 2023", 
+                niveau: "bepc", 
+                matiere: "svt", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "1.9 MB",
+                description: "Épreuve de Sciences de la Vie et de la Terre du BEPC 2023.",
+                url: "bepc-svt-2023.html"
+            },
+            { 
+                id: 5, 
+                titre: "BEPC Anglais 2023", 
+                niveau: "bepc", 
+                matiere: "anglais", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "1.4 MB",
+                description: "Épreuve d'anglais du BEPC 2023. Compréhension et expression.",
+                url: "bepc-anglais-2023.html"
+            },
+            { 
+                id: 6, 
+                titre: "BEPC Physique-Chimie 2023", 
+                niveau: "bepc", 
+                matiere: "physique", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "2.2 MB",
+                description: "Épreuve de physique-chimie du BEPC 2023. Exercices et problèmes.",
+                url: "bepc-physique-chimie-2023.html"
+            },
+            // Épreuves Bac
+            { 
+                id: 7, 
+                titre: "Bac Anglais 2023 - Série Générale", 
+                niveau: "bac", 
+                matiere: "anglais", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "1.8 MB",
+                description: "Épreuve d'anglais du baccalauréat général 2023. Compréhension écrite et expression écrite.",
+                url: "bac-anglais-2023.html"
+            },
+            { 
+                id: 8, 
+                titre: "Bac Mathématiques 2023 - Série Scientifique", 
+                niveau: "bac", 
+                matiere: "math", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "2.4 MB",
+                description: "Épreuve de mathématiques du baccalauréat scientifique 2023. Exercices sur les fonctions, probabilités et géométrie.",
+                url: "bac-mathematiques-2023.html"
+            },
+            // Épreuves Licence
+            { 
+                id: 9, 
+                titre: "Licence Anglais L1 - Semestre 1", 
+                niveau: "licence", 
+                matiere: "anglais", 
+                niveauEtude: "L1", 
+                type: "Épreuve", 
+                taille: "1.6 MB",
+                description: "Épreuve d'anglais de Licence 1, semestre 1. Compréhension écrite et rédaction.",
+                url: "licence-anglais-l1.html"
+            },
+            { 
+                id: 10, 
+                titre: "Licence Sociologie L2 - Semestre 3", 
+                niveau: "licence", 
+                matiere: "socio", 
+                niveauEtude: "L2", 
+                type: "Épreuve", 
+                taille: "2.3 MB",
+                description: "Épreuve de sociologie de Licence 2, semestre 3. Questions de cours et analyse de documents.",
+                url: "licence-sociologie-l2.html"
+            },
+            { 
+                id: 11, 
+                titre: "Bac Philosophie 2023 - Toutes séries", 
+                niveau: "bac", 
+                matiere: "philo", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "1.2 MB",
+                description: "Épreuve de philosophie du baccalauréat 2023, toutes séries. Dissertation et explication de texte.",
+                url: "bac-philosophie-2023.html"
+            },
+            { 
+                id: 12, 
+                titre: "Licence Géographie L3 - Semestre 5", 
+                niveau: "licence", 
+                matiere: "geo", 
+                niveauEtude: "L3", 
+                type: "Épreuve", 
+                taille: "3.4 MB",
+                description: "Épreuve de géographie de Licence 3, semestre 5. Géographie urbaine et économique.",
+                url: "licence-geographie-l3.html"
+            },
+            { 
+                id: 13, 
+                titre: "Bac SVT 2022 - Série Scientifique", 
+                niveau: "bac", 
+                matiere: "svt", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "2.1 MB",
+                description: "Épreuve de Sciences de la Vie et de la Terre du baccalauréat scientifique 2022.",
+                url: "bac-svt-2022.html"
+            },
+            { 
+                id: 14, 
+                titre: "Bac Histoire-Géographie 2022 - Série Économique", 
+                niveau: "bac", 
+                matiere: "histoiregeo", 
+                niveauEtude: "", 
+                type: "Épreuve", 
+                taille: "2.7 MB",
+                description: "Épreuve d'histoire-géographie du baccalauréat économique et social 2022.",
+                url: "bac-histoire-geo-2022.html"
+            },
+            { 
+                id: 15, 
+                titre: "Licence Espagnol L2 - Semestre 3", 
+                niveau: "licence", 
+                matiere: "espagnol", 
+                niveauEtude: "L2", 
+                type: "Épreuve", 
+                taille: "1.9 MB",
+                description: "Épreuve d'espagnol de Licence 2, semestre 3. Compréhension et expression écrite.",
+                url: "licence-espagnol-l2.html"
+            }
+        ];
+
+        // Éléments DOM
+        const niveauSelect = document.getElementById('niveau');
+        const matiereSelect = document.getElementById('matiere');
+        const niveauEtudeSelect = document.getElementById('niveauEtude');
+        const appliquerFiltresBtn = document.getElementById('appliquerFiltres');
+        const reinitialiserFiltresBtn = document.getElementById('reinitialiserFiltres');
+        const filesGrid = document.getElementById('filesGrid');
+        const resultsCount = document.getElementById('resultsCount');
+
+        // Événement lorsque le niveau change
+        niveauSelect.addEventListener('change', function() {
+            const niveau = this.value;
+            
+            // Réinitialiser la sélection de matière
+            matiereSelect.innerHTML = '<option value="">Sélectionnez une matière</option>';
+            
+            if (niveau && matieresParNiveau[niveau]) {
+                // Activer le sélecteur de matière
+                matiereSelect.disabled = false;
+                
+                // Ajouter les options de matière
+                matieresParNiveau[niveau].forEach(matiere => {
+                    const option = document.createElement('option');
+                    option.value = matiere.id;
+                    option.textContent = matiere.nom;
+                    matiereSelect.appendChild(option);
+                });
+            } else {
+                // Désactiver le sélecteur de matière
+                matiereSelect.disabled = true;
+                matiereSelect.innerHTML = '<option value="">Choisissez d\'abord un niveau</option>';
+            }
+            
+            // Ajuster les options de niveau d'étude
+            if (niveau === 'licence') {
+                niveauEtudeSelect.disabled = false;
+            } else {
+                niveauEtudeSelect.disabled = true;
+                niveauEtudeSelect.value = '';
+            }
+        });
+
+        // Appliquer les filtres
+        appliquerFiltresBtn.addEventListener('click', function() {
+            appliquerFiltres();
+        });
+
+        // Réinitialiser les filtres
+        reinitialiserFiltresBtn.addEventListener('click', function() {
+            niveauSelect.value = '';
+            matiereSelect.innerHTML = '<option value="">Choisissez d\'abord un niveau</option>';
+            matiereSelect.disabled = true;
+            niveauEtudeSelect.value = '';
+            niveauEtudeSelect.disabled = true;
+            appliquerFiltres();
+        });
+
+        // Fonction pour appliquer les filtres
+        function appliquerFiltres() {
+            const niveau = niveauSelect.value;
+            const matiere = matiereSelect.value;
+            const niveauEtude = niveauEtudeSelect.value;
+            
+            // Filtrer les épreuves
+            const epreuvesFiltrees = epreuves.filter(epreuve => {
+                let correspond = true;
+                
+                if (niveau && epreuve.niveau !== niveau) {
+                    correspond = false;
+                }
+                
+                if (matiere && epreuve.matiere !== matiere) {
+                    correspond = false;
+                }
+                
+                if (niveauEtude && epreuve.niveauEtude !== niveauEtude) {
+                    correspond = false;
+                }
+                
+                return correspond;
+            });
+            
+            // Afficher les résultats
+            afficherEpreuves(epreuvesFiltrees);
+        }
+
+        // Fonction pour afficher les épreuves
+        function afficherEpreuves(epreuves) {
+            filesGrid.innerHTML = '';
+            
+            if (epreuves.length === 0) {
+                filesGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--gray);">Aucune épreuve trouvée avec ces critères de filtrage.</p>';
+                resultsCount.textContent = '0 épreuve trouvée';
+                return;
+            }
+            
+            resultsCount.textContent = `${epreuves.length} épreuve${epreuves.length > 1 ? 's' : ''} trouvée${epreuves.length > 1 ? 's' : ''}`;
+            
+            epreuves.forEach(epreuve => {
+                const fileCard = document.createElement('div');
+                fileCard.className = 'file-card';
+                
+                fileCard.innerHTML = `
+                    <div class="file-header">
+                        <span>${epreuve.niveau === 'bepc' ? 'BEPC' : epreuve.niveau === 'bac' ? 'Baccalauréat' : 'Licence'} ${epreuve.niveauEtude ? '- ' + epreuve.niveauEtude : ''}</span>
+                        <span class="file-type">${epreuve.type}</span>
+                    </div>
+                    <div class="file-body">
+                        <h3 class="file-title">${epreuve.titre}</h3>
+                        <p class="file-description">${epreuve.description}</p>
+                        <div class="file-meta">
+                            <span><i class="far fa-file-pdf"></i> PDF - ${epreuve.taille}</span>
+                        </div>
+                        <div class="file-actions">
+                            <a href="${epreuve.url}" class="btn-outline">
+                                <i class="fas fa-book-open"></i> Consulter
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                filesGrid.appendChild(fileCard);
+            });
+        }
+
+        // Afficher toutes les épreuves au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            afficherEpreuves(epreuves);
+        });
+    </script>
+</body>
+</html>
