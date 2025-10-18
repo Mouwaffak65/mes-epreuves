@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        .legal-page {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .legal-page h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .legal-page h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .legal-page h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .legal-page p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .legal-page ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-page li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .team-member i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .legal-page {
+                padding: 1.5rem;
+            }
+            
+            .legal-page h1 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .legal-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="legal-page">
+            <h1>À Propos de MesEpreuves</h1>
+            
+            <h2>Notre Mission</h2>
+            <p>MesEpreuves est une plateforme éducative dédiée à la réussite académique des étudiants et élèves. Notre mission est de fournir un accès facile et gratuit à des ressources pédagogiques de qualité pour accompagner les apprenants dans leur parcours éducatif.</p>
+            
+            <h2>Notre Histoire</h2>
+            <p>Fondée en 2023, MesEpreuves est née de la constatation que de nombreux étudiants rencontraient des difficultés à accéder à des annales d'examens organisées et facilement consultables. Notre équipe d'enseignants et de développeurs s'est mobilisée pour créer cette plateforme intuitive et complète.</p>
+            
+            <h2>Nos Valeurs</h2>
+            <ul>
+                <li><strong>Accessibilité :</strong> Des ressources gratuites pour tous les étudiants</li>
+                <li><strong>Qualité :</strong> Contenu vérifié et organisé pédagogiquement</li>
+                <li><strong>Innovation :</strong> Interface moderne et expérience utilisateur optimale</li>
+                <li><strong>Communauté :</strong> Plateforme collaborative au service de l'éducation</li>
+            </ul>
+            
+            <h2>Notre Équipe</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Équipe Pédagogique</h3>
+                    <p>Enseignants et experts en éducation qui sélectionnent et organisent le contenu</p>
+                </div>
+                <div class="team-member">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Équipe Technique</h3>
+                    <p>Développeurs passionnés qui créent et améliorent la plateforme</p>
+                </div>
+                <div class="team-member">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Partenaires Académiques</h3>
+                    <p>Établissements scolaires et universitaires qui contribuent à enrichir notre catalogue</p>
+                </div>
+            </div>
+            
+            <h2>Nos Chiffres</h2>
+            <ul>
+                <li><strong>500+</strong> épreuves disponibles</li>
+                <li><strong>3</strong> niveaux d'études couverts (BEPC, Baccalauréat, Licence)</li>
+                <li><strong>15+</strong> matières différentes</li>
+                <li><strong>10,000+</strong> étudiants utilisateurs</li>
+            </ul>
+            
+            <h2>Contact</h2>
+            <p>Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter :</p>
+            <ul>
+                <li><strong>Email :</strong> contact@mesepreuves.com</li>
+                <li><strong>Téléphone :</strong> +33 1 23 45 67 89</li>
+                <li><strong>Adresse :</strong> 123 Avenue de l'Éducation, 75000 Paris, France</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
