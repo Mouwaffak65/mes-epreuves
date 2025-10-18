@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique des Cookies - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        .legal-page {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .legal-page h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .legal-page h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .legal-page h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .legal-page p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .legal-page ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-page li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .cookie-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .cookie-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .cookie-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cookie-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .type-necessary {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .type-preferences {
+            background: #cce7ff;
+            color: #004085;
+        }
+
+        .type-analytics {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .info-box {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .browser-steps {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .browser-steps h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .browser-steps ul {
+            margin-left: 1.5rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .legal-page {
+                padding: 1.5rem;
+            }
+            
+            .legal-page h1 {
+                font-size: 2rem;
+            }
+            
+            .cookie-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .legal-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .browser-steps {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="legal-page">
+            <h1>Politique des Cookies</h1>
+            
+            <div class="info-box">
+                <p><strong>Dernière mise à jour :</strong> 15 novembre 2023</p>
+                <p>Cette politique des cookies explique ce que sont les cookies, comment MesEpreuves les utilise, et comment vous pouvez gérer vos préférences en matière de cookies.</p>
+            </div>
+            
+            <h2>1. Qu'est-ce qu'un cookie ?</h2>
+            <p>Un cookie est un petit fichier texte stocké sur votre appareil (ordinateur, tablette, smartphone) lorsque vous visitez un site web. Les cookies sont largement utilisés pour faire fonctionner les sites web, ou pour les faire fonctionner plus efficacement, ainsi que pour fournir des informations aux propriétaires du site.</p>
+            
+            <h2>2. Types de cookies utilisés sur MesEpreuves</h2>
+            
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Type de cookie</th>
+                        <th>Finalité</th>
+                        <th>Durée de conservation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="cookie-type type-necessary">Nécessaire</span>
+                            Cookies de session
+                        </td>
+                        <td>Assurer le bon fonctionnement du site, mémoriser vos préférences de navigation et de filtrage</td>
+                        <td>Durée de la session</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="cookie-type type-preferences">Préférences</span>
+                            Cookies de personnalisation
+                        </td>
+                        <td>Mémoriser vos préférences (niveau d'études, matières favorites, paramètres d'affichage)</td>
+                        <td>13 mois</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="cookie-type type-analytics">Analytique</span>
+                            Cookies de mesure d'audience
+                        </td>
+                        <td>Comprendre comment les visiteurs interagissent avec notre site pour l'améliorer (données anonymisées)</td>
+                        <td>13 mois</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>3. Finalités détaillées des cookies</h2>
+            
+            <h3>3.1. Cookies nécessaires</h3>
+            <p>Ces cookies sont essentiels au fonctionnement de notre site. Ils vous permettent d'utiliser les fonctionnalités principales comme :</p>
+            <ul>
+                <li>La mémorisation de vos filtres de recherche (niveau, matière)</li>
+                <li>La navigation entre les pages</li>
+                <li>L'accès aux zones sécurisées du site</li>
+            </ul>
+            <p><strong>Ces cookies ne peuvent pas être désactivés.</strong></p>
+            
+            <h3>3.2. Cookies de préférences</h3>
+            <p>Ces cookies permettent de mémoriser des choix que vous effectuez pour personnaliser votre expérience :</p>
+            <ul>
+                <li>Vos préférences de niveau d'études</li>
+                <li>Vos matières favorites</li>
+                <li>Vos paramètres d'interface</li>
+            </ul>
+            
+            <h3>3.3. Cookies analytiques</h3>
+            <p>Ces cookies nous aident à comprendre comment les visiteurs interagissent avec notre site web en collectant et en rapportant des informations de manière anonyme. Nous utilisons Google Analytics pour :</p>
+            <ul>
+                <li>Compter les visiteurs et identifier leur mode d'utilisation</li>
+                <li>Améliorer la performance du site</li>
+                <li>Comprendre l'efficacité de notre contenu</li>
+            </ul>
+            
+            <div class="warning-box">
+                <p><strong>Important :</strong> Toutes les données collectées via les cookies analytiques sont entièrement anonymisées. Nous ne collectons aucune information personnelle identifiable.</p>
+            </div>
+            
+            <h2>4. Gestion des cookies</h2>
+            
+            <h3>4.1. Consentement</h3>
+            <p>Lors de votre première visite sur MesEpreuves, une bannière vous informe de l'utilisation de cookies et vous permet d'accepter ou de refuser les cookies non essentiels.</p>
+            
+            <h3>4.2. Modification de vos préférences</h3>
+            <p>Vous pouvez modifier vos préférences à tout moment en utilisant notre outil de gestion des cookies accessible en bas de chaque page.</p>
+            
+            <h3>4.3. Désactivation via votre navigateur</h3>
+            <p>Vous pouvez configurer votre navigateur pour refuser tous les cookies ou pour vous avertir lorsqu'un cookie est envoyé. Voici comment procéder pour les navigateurs les plus courants :</p>
+            
+            <div class="browser-steps">
+                <h4>Google Chrome</h4>
+                <ul>
+                    <li>Cliquez sur les trois points en haut à droite</li>
+                    <li>Allez dans "Paramètres" puis "Confidentialité et sécurité"</li>
+                    <li>Cliquez sur "Cookies et autres données des sites"</li>
+                    <li>Configurez vos préférences</li>
+                </ul>
+                
+                <h4>Mozilla Firefox</h4>
+                <ul>
+                    <li>Cliquez sur le menu en haut à droite</li>
+                    <li>Allez dans "Options" puis "Vie privée et sécurité"</li>
+                    <li>Dans la section "Cookies et données de site", configurez vos préférences</li>
+                </ul>
+                
+                <h4>Safari</h4>
+                <ul>
+                    <li>Allez dans "Safari" > "Préférences"</li>
+                    <li>Cliquez sur "Confidentialité"</li>
+                    <li>Configurez les options "Bloquer tous les cookies"</li>
+                </ul>
+                
+                <h4>Microsoft Edge</h4>
+                <ul>
+                    <li>Cliquez sur les trois points en haut à droite</li>
+                    <li>Allez dans "Paramètres" puis "Confidentialité, recherche et services"</li>
+                    <li>Dans la section "Cookies", configurez vos préférences</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <p><strong>Attention :</strong> La désactivation complète des cookies peut empêcher le bon fonctionnement de certaines fonctionnalités de notre site, notamment la mémorisation de vos préférences de filtrage.</p>
+            </div>
+            
+            <h2>5. Cookies tiers</h2>
+            <p>MesEpreuves utilise les services tiers suivants qui peuvent déposer des cookies :</p>
+            
+            <h3>5.1. Google Analytics</h3>
+            <p>Nous utilisons Google Analytics pour analyser l'audience de notre site. Les cookies déposés par Google Analytics nous aident à :</p>
+            <ul>
+                <li>Mesurer le nombre de visiteurs</li>
+                <li>Analyser le comportement des utilisateurs</li>
+                <li>Améliorer l'expérience utilisateur</li>
+            </ul>
+            <p>Pour en savoir plus sur la politique de confidentialité de Google Analytics : <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+            
+            <h3>5.2. Services d'hébergement</h3>
+            <p>Notre hébergeur peut déposer des cookies techniques nécessaires au bon fonctionnement de l'infrastructure.</p>
+            
+            <h2>6. Durée de conservation des cookies</h2>
+            <p>La durée de vie des cookies varie selon leur type :</p>
+            <ul>
+                <li><strong>Cookies de session :</strong> Supprimés à la fermeture du navigateur</li>
+                <li><strong>Cookies persistants :</strong> Conservés pour une durée maximale de 13 mois</li>
+                <li><strong>Cookies analytiques :</strong> 13 mois maximum</li>
+            </ul>
+            
+            <h2>7. Vos droits</h2>
+            <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+            <ul>
+                <li>Droit d'accès aux informations concernant les cookies déposés</li>
+                <li>Droit de retirer votre consentement à tout moment</li>
+                <li>Droit de vous opposer au dépôt de certains cookies</li>
+                <li>Droit à la limitation du traitement</li>
+            </ul>
+            
+            <h2>8. Mises à jour de cette politique</h2>
+            <p>Nous pouvons être amenés à modifier cette politique des cookies. Toute modification sera publiée sur cette page avec indication de la date de mise à jour.</p>
+            
+            <h2>9. Contact</h2>
+            <p>Pour toute question relative à cette politique des cookies ou pour exercer vos droits, vous pouvez nous contacter :</p>
+            <ul>
+                <li><strong>Email :</strong> privacy@mesepreuves.com</li>
+                <li><strong>Adresse postale :</strong> MesEpreuves SAS - Service Protection des Données - 123 Avenue de l'Éducation, 75000 Paris, France</li>
+                <li><strong>Téléphone :</strong> +33 1 23 45 67 89</li>
+            </ul>
+            
+            <div class="info-box">
+                <p><strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong><br>
+                Si vous estimez que nous ne respectons pas nos obligations en matière de protection des données, vous avez le droit d'introduire une réclamation auprès de la CNIL :<br>
+                3 Place de Fontenoy, 75007 Paris - www.cnil.fr</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
