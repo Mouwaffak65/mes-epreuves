@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        .legal-page {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .legal-page h1 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .legal-page h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .legal-page h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .legal-page p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .legal-page ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-page li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .contact-info {
+            background: #e8f4fd;
+            border: 1px solid var(--accent);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .legal-page {
+                padding: 1.5rem;
+            }
+            
+            .legal-page h1 {
+                font-size: 2rem;
+            }
+            
+            .legal-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .contact-info {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="legal-page">
+            <h1>Mentions Légales</h1>
+            
+            <div class="info-box">
+                <p><strong>En vigueur au 15/11/2023</strong></p>
+                <p>Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l'économie numérique, dite L.C.E.N., les présentes mentions légales sont portées à la connaissance des utilisateurs et visiteurs du site MesEpreuves.</p>
+            </div>
+            
+            <h2>1. Éditeur du Site</h2>
+            <h3>1.1. Identification</h3>
+            <ul>
+                <li><strong>Dénomination sociale :</strong> MesEpreuves SAS</li>
+                <li><strong>Forme juridique :</strong> Société par Actions Simplifiée</li>
+                <li><strong>Capital social :</strong> 10 000 €</li>
+                <li><strong>Siège social :</strong> 123 Avenue de l'Éducation, 75000 Paris, France</li>
+                <li><strong>SIRET :</strong> 123 456 789 00012</li>
+                <li><strong>RCS :</strong> Paris B 123 456 789</li>
+                <li><strong>Numéro TVA intracommunautaire :</strong> FR 12 123456789</li>
+            </ul>
+            
+            <h3>1.2. Contact</h3>
+            <ul>
+                <li><strong>Téléphone :</strong> +33 1 23 45 67 89</li>
+                <li><strong>Email :</strong> legal@mesepreuves.com</li>
+                <li><strong>Directeur de la publication :</strong> Monsieur Jean Dupont</li>
+            </ul>
+            
+            <h2>2. Hébergement</h2>
+            <h3>2.1. Hébergeur du Site</h3>
+            <ul>
+                <li><strong>Nom :</strong> OVH SAS</li>
+                <li><strong>Adresse :</strong> 2 rue Kellermann, 59100 Roubaix, France</li>
+                <li><strong>Téléphone :</strong> +33 9 72 10 10 07</li>
+                <li><strong>Site web :</strong> www.ovh.com</li>
+            </ul>
+            
+            <h2>3. Description des Services</h2>
+            <p>Le site MesEpreuves a pour objet de fournir une plateforme de consultation d'épreuves d'examen à des fins éducatives et pédagogiques.</p>
+            
+            <h3>3.1. Services proposés</h3>
+            <ul>
+                <li>Consultation gratuite d'épreuves d'examen</li>
+                <li>Filtrage par niveau d'études (BEPC, Baccalauréat, Licence)</li>
+                <li>Filtrage par matière</li>
+                <li>Accès immédiat sans création de compte</li>
+            </ul>
+            
+            <h2>4. Propriété Intellectuelle</h2>
+            <h3>4.1. Droits d'auteur</h3>
+            <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.</p>
+            
+            <h3>4.2. Marques et logos</h3>
+            <p>La marque "MesEpreuves" et le logo associé sont des marques déposées. Toute reproduction, imitation ou usage, total ou partiel, de ces marques sans autorisation expresse est interdite.</p>
+            
+            <h3>4.3. Contenu du site</h3>
+            <p>La structure générale, ainsi que les textes, images animées ou non, savoir-faire et tous autres éléments composant le site sont la propriété exclusive de MesEpreuves SAS.</p>
+            
+            <h2>5. Protection des Données Personnelles</h2>
+            <h3>5.1. Collecte des données</h3>
+            <p>Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), le site MesEpreuves :</p>
+            <ul>
+                <li>Ne collecte aucune donnée personnelle identifiante</li>
+                <li>Ne requiert aucune création de compte utilisateur</li>
+                <li>Utilise des cookies techniques pour le bon fonctionnement du site</li>
+            </ul>
+            
+            <h3>5.2. Cookies</h3>
+            <p>Le site utilise des cookies pour :</p>
+            <ul>
+                <li>Améliorer l'expérience de navigation</li>
+                <li>Mémoriser les préférences de filtrage</li>
+                <li>Analyser l'audience du site (données anonymisées)</li>
+            </ul>
+            
+            <h2>6. Limitations de Responsabilité</h2>
+            <h3>6.1. Contenu des épreuves</h3>
+            <p>MesEpreuves met tout en œuvre pour offrir aux utilisateurs des informations et/ou outils disponibles et vérifiés, mais ne saurait être tenue pour responsable des erreurs, d'une absence de disponibilité des informations et/ou de la présence de virus sur son site.</p>
+            
+            <h3>6.2. Disponibilité du service</h3>
+            <p>MesEpreuves s'efforce de permettre l'accès au site 24 heures sur 24, 7 jours sur 7, sauf en cas de force majeure ou d'un événement hors du contrôle de MesEpreuves, et sous réserve des éventuelles pannes et interventions de maintenance nécessaires au bon fonctionnement du site.</p>
+            
+            <h3>6.3. Liens hypertextes</h3>
+            <p>Le site peut contenir des liens hypertextes vers d'autres sites. MesEpreuves ne dispose d'aucun moyen pour contrôler les sites en connexion avec son site et ne répond pas de la disponibilité de tels sites et sources externes.</p>
+            
+            <h2>7. Droit Applicable et Attribution de Juridiction</h2>
+            <h3>7.1. Loi applicable</h3>
+            <p>Les présentes mentions légales sont régies par le droit français. En cas de différend et à défaut d'accord amiable, le litige sera porté devant les tribunaux français conformément aux règles de compétence en vigueur.</p>
+            
+            <h3>7.2. Langue du contrat</h3>
+            <p>La langue des présentes mentions légales est la langue française.</p>
+            
+            <h2>8. Réclamations et Médiation</h2>
+            <h3>8.1. Réclamations</h3>
+            <p>Le client peut formuler toute réclamation en contactant MesEpreuves par courrier électronique à l'adresse : reclamations@mesepreuves.com</p>
+            
+            <h3>8.2. Médiation</h3>
+            <p>Conformément aux articles L.611-1 et suivants du code de la consommation, en cas de litige, le consommateur a la possibilité de recourir gratuitement à un médiateur de la consommation.</p>
+            <p>Le médiateur retenu est :</p>
+            <ul>
+                <li><strong>Nom :</strong> Médiateur du e-commerce</li>
+                <li><strong>Adresse :</strong> 60 Rue la Boétie, 75008 Paris</li>
+                <li><strong>Site web :</strong> www.mediateurduecommerce.fr</li>
+                <li><strong>Email :</strong> contact@mediateurduecommerce.fr</li>
+            </ul>
+            
+            <h2>9. Informations Réglementaires</h2>
+            <h3>9.1. Activité réglementée</h3>
+            <p>MesEpreuves exerce une activité de fourniture de services en ligne qui n'est pas soumise à agrément particulier.</p>
+            
+            <h3>9.2. Garanties légales</h3>
+            <p>Conformément aux dispositions légales en vigueur, MesEpreuves informe les utilisateurs des garanties légales qui leur sont applicables.</p>
+            
+            <div class="contact-info">
+                <h3>Contact pour les questions légales</h3>
+                <p>Pour toute question relative aux présentes mentions légales, vous pouvez nous contacter :</p>
+                <ul>
+                    <li><strong>Par email :</strong> legal@mesepreuves.com</li>
+                    <li><strong>Par courrier :</strong> MesEpreuves SAS - Service Juridique - 123 Avenue de l'Éducation, 75000 Paris, France</li>
+                    <li><strong>Par téléphone :</strong> +33 1 23 45 67 89 (du lundi au vendredi, de 9h à 18h)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
