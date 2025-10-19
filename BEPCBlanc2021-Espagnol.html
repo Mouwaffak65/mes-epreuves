@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC Blanc 2021 - Espagnol - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Texte de l'épreuve */
+        .text-content {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .text-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .vocabulary {
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .vocabulary-title {
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .answer-option {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC Blanc 2021 - Espagnol</h1>
+                <p>Collège Catholique "Les Hibiscus"</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Espagnol</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Série</span>
+                <span>ML</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Contexte de l'épreuve</h2>
+            <p>L'avenir des enfants est une préoccupation constante pour les parents. Ils utilisent tous les moyens pour les aider et les motiver à bien travailler. Le texte support de cette situation d'évaluation en est une illustration.</p>
+            
+            <h3 class="problem-subtitle">Compétences évaluées</h3>
+            <ul>
+                <li>Réagir de façon pertinente face à un texte lu</li>
+                <li>Produire par écrit un texte</li>
+            </ul>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">I- Réagir de façon adéquate face à un texte lu</h2>
+            
+            <div class="text-content">
+                <div class="text-title">Texto: Por tu padre</div>
+                <p>- Mira - dijo Andrés-, ¿ no querrás repetir el año, verdad? Vamos a hacer lo posible para que te admitan en clase, pero tú no vas a prometer portarte bien, aprobar las materias y no volver a pelear, ¿ no es así?</p>
+                <p>- Yo sé que lo harás para tu propio bien, y por tu mamá…</p>
+                <p>René volvió a asentir en silencio.</p>
+                <p>- … y también un poco, quizás por tu padre, ¿ no?</p>
+                <p>René inmóvil.</p>
+                <p>- … que te darán un premio si pasas de año. Podríamos ir a Acapulco en vacaciones con tu madre, Felipe, una amiga mía que te quiere mucho y yo. Te enseñaré a nadar, a esquiar. ¿ No se te antoja? ¿ Y bucear? ¿ Ya aprendiste a manejar?</p>
+                <p>- Mamá no me deja.</p>
+                <p>- Pero si soy yo quien te enseña, seguramente si te va a dejar. ¿ Verdad René?</p>
+                <p>René se despidió, regreso al cuarto.</p>
+                <p><em>José Joaquín BLANCO, La vida es larga y además no importa, 1979.</em></p>
+            </div>
+            
+            <div class="vocabulary">
+                <div class="vocabulary-title">Apuntes léxicos (Notes lexicales) :</div>
+                <ul>
+                    <li><strong>repetir el año</strong> : redoubler</li>
+                    <li><strong>portarte bien</strong> : bien te comporter</li>
+                    <li><strong>volverte a pelear</strong> : te battre à nouveau</li>
+                    <li><strong>asentir</strong> : approuver</li>
+                    <li><strong>un premio</strong> : une récompense</li>
+                    <li><strong>te enseñaré a nadar</strong> : je t'apprendrai à nager</li>
+                    <li><strong>¿ no te antoja?</strong> : ça ne te dit rien ?</li>
+                    <li><strong>manejar</strong> : conduire</li>
+                    <li><strong>si pasas de año</strong> : si tu vas en classe supérieure</li>
+                </ul>
+            </div>
+            
+            <h3 class="problem-subtitle">A- Muestra que comprendes el texto (Montre que tu comprends le texte)</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Elige la buena respuesta y escribe la frase entera (Choisis la bonne réponse et écris la phrase entière)</span>
+                
+                <div class="step">
+                    <div class="step-title">a) Este texto es un ... (Ce texte est un ...)</div>
+                    <div class="answer-option correct-answer">a1- diálogue</div>
+                    <div class="answer-option incorrect-answer">a2- cuento</div>
+                    <div class="answer-option incorrect-answer">a3- artículo de prensa</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">b) Andrés discute con... (Andrés discute avec...)</div>
+                    <div class="answer-option incorrect-answer">b1- un profesor</div>
+                    <div class="answer-option correct-answer">b2- su hijo</div>
+                    <div class="answer-option incorrect-answer">b3- el director del colegio</div>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>a) La bonne réponse est :</strong> a1- diálogo</p>
+                <p><strong>Phrase complète :</strong> Este texto es un diálogo.</p>
+                <p><strong>Justification :</strong> Le texte présente un échange entre deux personnages avec des répliques alternées.</p>
+                
+                <p><strong>b) La bonne réponse est :</strong> b2- su hijo</p>
+                <p><strong>Phrase complète :</strong> Andrés discute con su hijo.</p>
+                <p><strong>Justification :</strong> Andrés s'adresse à René en utilisant un ton paternel et fait référence à "tu mamá", ce qui indique qu'il est le père.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Encuentra en el texto (Trouve dans le texte) :</span>
+                
+                <div class="step">
+                    <div class="step-title">a) la palabra sinónima de "un regalo" (le mot synonyme de "un cadeau")</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">b) la palabra antónima de "poco" (le mot antonyme de "peu")</div>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>a) Mot synonyme de "un regalo" :</strong> "un premio" (ligne : "que te darán un premio si pasas de año")</p>
+                <p><strong>Justification :</strong> "Premio" et "regalo" sont tous les deux des récompenses ou cadeaux.</p>
+                
+                <p><strong>b) Mot antonyme de "poco" :</strong> "mucho" (ligne : "una amiga mía que te quiere mucho")</p>
+                <p><strong>Justification :</strong> "Poco" signifie "peu" et "mucho" signifie "beaucoup", ce sont des antonymes.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Contesta las preguntas (Réponds aux questions) :</span>
+                
+                <div class="step">
+                    <div class="step-title">a) ¿ Cómo debe comportarse René en el colegio ? (Comment René doit-il se comporter au collège ?)</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">b) ¿ Qué le promete su padre si trabaja bien ? (Que lui promet son père s'il travaille bien ?)</div>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>a) René debe :</strong></p>
+                <ul>
+                    <li>Portarse bien (bien se comporter)</li>
+                    <li>Aprobar las materias (réussir les matières)</li>
+                    <li>No volver a pelear (ne plus se battre)</li>
+                </ul>
+                
+                <p><strong>b) Su padre le promete :</strong></p>
+                <ul>
+                    <li>Un premio (une récompense)</li>
+                    <li>Ir a Acapulco en vacaciones (aller à Acapulco en vacances)</li>
+                    <li>Enseñarle a nadar, a esquiar y a bucear (lui apprendre à nager, skier et plonger)</li>
+                    <li>Enseñarle a manejar (lui apprendre à conduire)</li>
+                </ul>
+            </div>
+            
+            <h3 class="problem-subtitle">B- Realiza obras lingüísticas (Réalise des exercices linguistiques)</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Pasa al pretérito imperfecto del indicativo la frase siguiente (Mets la phrase suivante au passé imparfait de l'indicatif) :</span>
+                <p>"Pero soy yo quien te enseña..."</p>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Phrase au pretérito imperfecto :</strong> "Pero era yo quien te enseñaba..."</p>
+                <p><strong>Justification :</strong> 
+                "Soy" (présent de "ser") devient "era" (imparfait de "ser")<br>
+                "Enseña" (présent de "enseñar") devient "enseñaba" (imparfait de "enseñar")</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Pon a la forma negativa (Mets à la forme négative) :</span>
+                <p>"¿ Ya aprendiste a manejar?"</p>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Forme négative :</strong> "¿ Todavía no aprendiste a manejar?" ou "¿ Aún no aprendiste a manejar?"</p>
+                <p><strong>Justification :</strong> En espagnol, pour former la négation avec "ya" (déjà), on utilise "todavía no" ou "aún no" (pas encore).</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Introduce en la frase la idea de obligación (Introduis dans la phrase l'idée d'obligation) :</span>
+                <p>"Mamá no me deja"</p>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Phrase avec idée d'obligation :</strong> "Mamá no me deja, tengo que obedecerla" ou "Mamá no me deja, debo hacerle caso"</p>
+                <p><strong>Justification :</strong> L'idée d'obligation est exprimée avec "tener que" (devoir) ou "deber" (devoir).</p>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">II- Produire un texte écrit</h2>
+            
+            <div class="question">
+                <span class="question-number">A</span>
+                <span>Ordonne les mots ou groupes de mots pour construire des phrases correctes (Ordonne les mots ou groupes de mots pour construire des phrases correctes) :</span>
+                
+                <div class="step">
+                    <div class="step-title">1- / el da / Por eso, /consejos./su padre/</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">2- /un diálogo / un padre y su hijo./ Este texto/ entre / es/</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">3- / le promete/ si trabaja bien./Finalmente,/el padre/un regalo/</div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">4- /no trabaja / en /El hijo / bien/ el colegio./</div>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>1. Phrase correcte :</strong> "Por eso, su padre le da consejos."</p>
+                <p><strong>2. Phrase correcte :</strong> "Este texto es un diálogo entre un padre y su hijo."</p>
+                <p><strong>3. Phrase correcte :</strong> "Finalmente, el padre le promete un regalo si trabaja bien."</p>
+                <p><strong>4. Phrase correcte :</strong> "El hijo no trabaja bien en el colegio."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">B</span>
+                <span>Ordonne les phrases ainsi obtenues pour construire un paragraphe cohérent (Ordonne les phrases ainsi obtenues pour construire un paragraphe cohérent)</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <div class="solution-box">
+                    <p><strong>Paragraphe cohérent :</strong></p>
+                    <p>"Este texto es un diálogo entre un padre y su hijo. El hijo no trabaja bien en el colegio. Por eso, su padre le da consejos. Finalmente, el padre le promete un regalo si trabaja bien."</p>
+                </div>
+                <p><strong>Justification :</strong> Cet ordre suit une progression logique :</p>
+                <ol>
+                    <li>Présentation du texte</li>
+                    <li>Explication du problème</li>
+                    <li>Réaction du père</li>
+                    <li>Solution proposée</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
