@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - Lecture - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Texte de l'épreuve */
+        .text-content {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+            line-height: 1.8;
+        }
+
+        .text-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            text-align: center;
+        }
+
+        .text-author {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1rem;
+            color: var(--gray);
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .answer-option {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        .text-quote {
+            background-color: #f8f9fa;
+            border-left: 3px solid var(--primary);
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Lecture</h1>
+                <p>Session Normale - DEC-MESTEP</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Lecture</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Situation d'évaluation</h2>
+            <p>Pour se sentir heureux parmi leurs camarades, la plupart des enfants ont besoin d'avoir des amis. Mais ce besoin peut être difficile à satisfaire, surtout lorsque l'enfant est né avec un handicap comme une cécité (mal-voyant), le bégaiement, une couleur de peau inhabituelle, etc. Tu n'as peut-être jamais vécu une pareille situation ou tu n'en as jamais entendu parler. Voici un texte qui présente le cas d'un enfant handicapé.</p>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Texte</h2>
+            
+            <div class="text-content">
+                <div class="text-title">L'enfant de la lune</div>
+                
+                <p>Je m'appelle Kuna, j'ai dix ans et je suis un petit garçon bien seul, comme la plupart de mes "frères" de même peau d'ailleurs. Je suis issu d'une famille de six enfants, mais j'ai une particularité : je suis albinos alors que papa, maman et mes frères sont tous noirs.</p>
+                
+                <p>Grand-mère Asta dit que lorsque maman était en grossesse, elle rêvait très souvent d'un gros bouquet de fleurs toutes rouges avec une seule et petite fleur toute blanche. C'est à partir de ce moment-là qu'elle a su que l'enfant de maman serait albinos.</p>
+                
+                <p>Je ne me sens bien qu'à la maison car dès que je sors tout le monde me regarde comme si j'étais une curiosité !</p>
+                
+                <p>Les enfants du village refusant de s'amuser avec moi, je courais me réfugier chez grand-mère Asta jusqu'à ce que j'entre à mon tour à l'école.</p>
+                
+                <p>Je n'ai jamais été heureux de prendre le chemin de l'école. Pendant les deux premières années, aucun élève ne voulait m'accepter comme voisin et, pendant la récréation, je courais dans tous les sens à la recherche de mes frères.</p>
+                
+                <p>J'ai fini par suivre les conseils de mon père : « Kuna mon fils, ne gaspille plus ton énergie à vouloir te faire coûte que coûte des amis. »</p>
+                
+                <p>C'est avec des yeux grands ouverts que je regarde mon père : je ne le comprends pas ! Je m'attendais à un autre discours de sa part.</p>
+                
+                <p>« Mais papa... »</p>
+                
+                <p>Sans me laisser achever ma phrase, il me demande de le suivre sous le gros arbre devenu le confident de toute notre famille. Assis confortablement au creux des grosses racines de notre arbre, papa prend la parole :</p>
+                
+                <p>« Mon petit Kuna, je sais que tu as été surpris de m'entendre tout à l'heure. Je n'ai pas changé. Je vous ai toujours demandé d'avoir beaucoup d'amour pour votre prochain et je le répète encore aujourd'hui. Mais je ne veux pas que tu perdes de vue que tu vas à l'école pour apprendre. Si tu réussis à force de travail à être le meilleur élève de ta classe, tu auras tous les amis que tu voudras parce que tous les autres seront fiers d'être proches du premier. Ecoute-moi bien mon fils. Le savoir est la clé du bonheur : choisis-le comme ton meilleur ami et jamais il ne te trahira. Il te hissera au sommet de la société. Ne l'oublie jamais.</p>
+                
+                <p>- Mais papa, peut-on vivre sans ami ?</p>
+                
+                <p>- Je ne t'interdis pas d'avoir des amis, mon fils. »</p>
+                
+                <p>Décidément, je ne comprends plus rien à ce que mon petit papa me raconte. Mais je suis sûr d'une chose : il veut me voir heureux. Quant à moi, je décide de suivre ses conseils : étudier et être parmi les meilleurs élèves de mon école.</p>
+                
+                <p>Voilà le début de ma nouvelle vie !</p>
+                
+                <div class="text-author">
+                    Eliane KODJO, « L'enfant de la lune » in Alain MABANCKOU, Enfances, Yaoundé, Akoma Mba, Tropiques et Editions Ndzé, 2005, pp. 49-51.
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Consignes</h2>
+            
+            <h3 class="problem-subtitle">C1- Compréhension globale du texte</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Kuna est heureux :</span>
+                <div class="answer-option incorrect-answer">a) à l'école</div>
+                <div class="answer-option correct-answer">b) à la maison</div>
+                <div class="answer-option incorrect-answer">c) dans la rue</div>
+                <span>Choisis la bonne réponse et justifie ton choix avec un passage du texte.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>La bonne réponse est : b) à la maison</strong></p>
+                <p><strong>Justification :</strong> "Je ne me sens bien qu'à la maison car dès que je sors tout le monde me regarde comme si j'étais une curiosité !"</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>A la fin de leur entretien, Kuna résume dans une phrase les conseils de son père. Relève cette phrase.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Phrase relevée :</strong> "Quant à moi, je décide de suivre ses conseils : étudier et être parmi les meilleurs élèves de mon école."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Propose un titre au texte.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Titre proposé :</strong> "Le savoir comme remède à la solitude" ou "Kuna et le défi de l'albinisme" ou "La leçon de vie du père de Kuna"</p>
+                <p><strong>Justification :</strong> Le titre doit refléter le thème principal du texte qui est la solitude d'un enfant albinos et la solution proposée par son père : se consacrer aux études.</p>
+            </div>
+            
+            <h3 class="problem-subtitle">C2- Pertinence de la stratégie utilisée</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Indique le type de ce texte et justifie ta réponse à l'aide de trois indices textuels.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Type de texte :</strong> Récit (texte narratif)</p>
+                <p><strong>Justification avec trois indices :</strong></p>
+                <ol>
+                    <li>Présence d'un narrateur : "Je m'appelle Kuna..." (première personne)</li>
+                    <li>Présence d'une situation initiale, d'éléments de progression et d'une résolution</li>
+                    <li>Présence de dialogues entre les personnages</li>
+                </ol>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>a) Explique selon le texte :</span>
+                <div class="step">
+                    <div class="step-title">- albinos (mais j'ai une particularité : je suis albinos)</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">- coûte que coûte (ne gaspille plus ton énergie à vouloir te faire coûte que coûte des amis)</div>
+                </div>
+                <span>b) Donne deux mots de la même famille que confident.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>2a) Explications :</strong></p>
+                <ul>
+                    <li><strong>Albinos :</strong> Personne atteinte d'albinisme, une particularité génétique qui se caractérise par une absence de pigmentation de la peau, des cheveux et des yeux. Dans le texte, Kuna est albinos alors que sa famille est noire.</li>
+                    <li><strong>Coûte que coûte :</strong> Locution adverbiale qui signifie "à n'importe quel prix", "quelles que soient les difficultés". Le père conseille à Kuna de ne pas s'épuiser à vouloir absolument se faire des amis.</li>
+                </ul>
+                <p><strong>2b) Mots de la même famille que "confident" :</strong> confidence, confidentiel, confier, confiance</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>a) Indique le temps et le mode de chacun des verbes conjugués dans la phrase suivante : « Choisis-le comme ton meilleur ami et jamais il ne te trahira ».</span>
+                <span>b) Donne la valeur du mode du premier verbe de cette phrase.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>3a) Analyse des verbes :</strong></p>
+                <ul>
+                    <li><strong>Choisis :</strong> présent de l'indicatif, 2e personne du singulier</li>
+                    <li><strong>Trahira :</strong> futur simple de l'indicatif, 3e personne du singulier</li>
+                </ul>
+                <p><strong>3b) Valeur du mode du premier verbe :</strong> Le verbe "choisis" est à l'impératif présent, 2e personne du singulier. Il exprime un conseil, une recommandation que le père donne à son fils.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Soit la phrase suivante : « C'est avec des yeux grands ouverts que je regarde mon père : je ne le comprends pas ! ».</span>
+                <span>a) Donne le type de cette phrase.</span>
+                <span>b) Précise l'idée que ce type de phrase exprime ici.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>4a) Type de phrase :</strong> Phrase exclamative</p>
+                <p><strong>4b) Idée exprimée :</strong> Cette phrase exprime la surprise et l'incompréhension de Kuna face aux paroles de son père. Il s'attendait à un discours différent et est déconcerté par le conseil de ne pas chercher à se faire des amis.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">5</span>
+                <span>Soit la phrase : « Décidément, je ne comprends plus rien à ce que mon petit papa me raconte. ».</span>
+                <span>a) Choisis et recopie la bonne réponse.</span>
+                <span>Dans cette phrase, « mon petit papa » signifie :</span>
+                <div class="answer-option incorrect-answer">- mon papa de taille courte</div>
+                <div class="answer-option correct-answer">- mon cher papa</div>
+                <div class="answer-option incorrect-answer">- le petit frère de mon papa</div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>La bonne réponse est : "mon cher papa"</strong></p>
+                <p><strong>Justification :</strong> L'expression "mon petit papa" est une marque d'affection, de tendresse. Elle n'a pas de rapport avec la taille physique du père mais exprime l'attachement filial de Kuna.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">6</span>
+                <span>Donne la nature et la fonction de :</span>
+                <div class="step">
+                    <div class="step-title">- un petit garçon (je suis un petit garçon bien seul)</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">- le (je ne le comprends pas)</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">- confortablement (Assis confortablement au creux des grosses racines)</div>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>6) Nature et fonction :</strong></p>
+                <ul>
+                    <li><strong>"un petit garçon" :</strong> 
+                        <ul>
+                            <li>Nature : groupe nominal</li>
+                            <li>Fonction : attribut du sujet "je"</li>
+                        </ul>
+                    </li>
+                    <li><strong>"le" :</strong> 
+                        <ul>
+                            <li>Nature : pronom personnel complément</li>
+                            <li>Fonction : COD du verbe "comprends"</li>
+                        </ul>
+                    </li>
+                    <li><strong>"confortablement" :</strong> 
+                        <ul>
+                            <li>Nature : adverbe</li>
+                            <li>Fonction : complément circonstanciel de manière du verbe "assis"</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">7</span>
+                <span>Fais l'analyse logique de la portion de phrase suivante : « tu auras tous les amis que tu voudras parce que tous les autres seront fiers d'être proches du premier. »</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>7) Analyse logique :</strong></p>
+                <ul>
+                    <li><strong>Proposition principale :</strong> "tu auras tous les amis que tu voudras"</li>
+                    <li><strong>Proposition subordonnée relative :</strong> "que tu voudras" (complète "amis")</li>
+                    <li><strong>Proposition subordonnée circonstancielle de cause :</strong> "parce que tous les autres seront fiers d'être proches du premier"</li>
+                </ul>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">8</span>
+                <span>Expression de sentiment(s)/d'opinion(s) se rapportant au texte</span>
+                <div class="step">
+                    <div class="step-title">1- Dis le sentiment qui t'anime à la lecture de ce texte. Justifie ta réponse.</div>
+                </div>
+                <div class="step">
+                    <div class="step-title">2- Dis ce que tu penses du comportement des autres enfants du village à l'égard de Kuna. Justifie ta réponse.</div>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>8.1) Sentiment personnel :</strong> (Réponse personnelle attendue)</p>
+                <div class="solution-box">
+                    <p>Exemple de réponse : "À la lecture de ce texte, je ressens de la tristesse et de l'empathie pour Kuna. Je suis touché par sa solitude et le rejet qu'il subit à cause de sa différence. Cependant, je suis aussi admiratif de la sagesse de son père qui lui propose une solution constructive pour surmonter ses difficultés."</p>
+                </div>
+                
+                <p><strong>8.2) Opinion sur le comportement des autres enfants :</strong></p>
+                <div class="solution-box">
+                    <p>Exemple de réponse : "Je trouve le comportement des autres enfants du village injuste et cruel. Ils rejettent Kuna uniquement à cause de son apparence physique, sans chercher à le connaître. Cette attitude reflète l'intolérance et la peur de la différence qui peuvent exister dans une communauté. Au lieu de l'exclure, ils devraient essayer de comprendre sa particularité et l'accepter tel qu'il est."</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">9</span>
+                <span>Dépassement du texte</span>
+                <span>En dix lignes au maximum, donne des conseils à tes amis qui se comportent mal à l'égard de leurs camarades portant un handicap (les mal-voyants, les paralysés, les bègues, les albinos, etc.).</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <div class="solution-box">
+                    <p><strong>Exemple de réponse (10 lignes maximum) :</strong></p>
+                    <p>"Chers amis, je voudrais vous donner quelques conseils concernant votre comportement envers nos camarades porteurs de handicaps. Tout d'abord, rappelez-vous que leur différence physique n'affecte en rien leurs qualités humaines et leurs capacités. Au lieu de les rejeter ou de vous moquer d'eux, essayez de les connaître et de comprendre leurs difficultés. Soyez empathiques et imaginez-vous à leur place. Proposez-leur votre aide quand cela est nécessaire, mais sans les infantiliser. Incluez-les dans vos jeux et activités en adaptant éventuellement les règles. Souvenez-vous que la diversité est une richesse et que chacun mérite le respect, quelles que soient ses particularités. Ensemble, nous pouvons créer un environnement scolaire plus inclusif et bienveillant pour tous."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
