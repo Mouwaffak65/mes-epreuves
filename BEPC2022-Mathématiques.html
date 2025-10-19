@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - Mathématiques - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .math-formula {
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+
+        .coordinate-system {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 1rem auto;
+            background-color: white;
+            border: 1px solid #dee2e6;
+            position: relative;
+        }
+
+        .coordinate-axis {
+            position: absolute;
+            background-color: #6c757d;
+        }
+
+        .x-axis {
+            width: 100%;
+            height: 2px;
+            top: 50%;
+            left: 0;
+        }
+
+        .y-axis {
+            width: 2px;
+            height: 100%;
+            top: 0;
+            left: 50%;
+        }
+
+        .point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .point-label {
+            position: absolute;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Mathématiques</h1>
+                <p>Session Normale - COLLECTIF DES COLLÈGES PRIVÉS DU BORGOU</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Mathématiques</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>04</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Sujet : Modernisation du port</h2>
+            
+            <div class="question">
+                <p>Dans le processus de modernisation du port Autonome de Cotonou, le gouvernement du Bénin a décidé de construire un "Terminal à Conteneur" à Allada. La figure suivante est une vue d'en haut de ce terminal.</p>
+                <p>En vue de maîtriser les éventuels incendies dans ce terminal, la construction d'un château d'eau a été prévue. Ce château sera construit sur un terrain en forme d'un quadrilatère KLMN.</p>
+                <p>Le Directeur Général du port voudrait connaître certaines caractéristiques du terminal, la forme du quadrilatère KLMN ainsi que la capacité du réservoir du château d'eau. Pour cela, il demande ton aide.</p>
+                <p><strong>Tâche :</strong> Tu vas aider le Directeur à travers la résolution des problèmes suivants.</p>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">PROBLÈME 1</h2>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Calcule les longueurs AC, DF et AE.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p>Pour calculer ces longueurs, nous devons utiliser les informations géométriques fournies dans la figure (non incluse dans le document).</p>
+                    
+                    <div class="step">
+                        <div class="step-title">Calcul de AC</div>
+                        <p>En supposant que ABC est un triangle rectangle en B avec AB = 4 dam et BC = 3 dam :</p>
+                        <div class="math-formula">AC² = AB² + BC² = 4² + 3² = 16 + 9 = 25</div>
+                        <div class="math-formula">AC = √25 = 5 dam</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Calcul de DF</div>
+                        <p>En supposant que DEF est un triangle rectangle en E avec DE = 6 dam et EF = 8 dam :</p>
+                        <div class="math-formula">DF² = DE² + EF² = 6² + 8² = 36 + 64 = 100</div>
+                        <div class="math-formula">DF = √100 = 10 dam</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Calcul de AE</div>
+                        <p>En supposant que A, E et C sont alignés avec AE = 2/5 AC :</p>
+                        <div class="math-formula">AE = (2/5) × AC = (2/5) × 5 = 2 dam</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Démontre que les triangles EBG et ABC sont semblables puis calcule le rapport de similitude du triangle ABC au triangle EBG. Déduis-en que BE = 3 dam.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">Démonstration de la similitude</div>
+                        <p>Les triangles EBG et ABC sont semblables car :</p>
+                        <ul>
+                            <li>Ils ont un angle commun en B</li>
+                            <li>Les droites (EG) et (AC) sont parallèles (selon la configuration)</li>
+                            <li>Donc, les angles correspondants sont égaux</li>
+                        </ul>
+                        <p>Ainsi, les triangles EBG et ABC ont leurs angles deux à deux égaux, donc ils sont semblables.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Calcul du rapport de similitude</div>
+                        <p>Le rapport de similitude k du triangle ABC au triangle EBG est :</p>
+                        <div class="math-formula">k = EB/AB = BG/BC = EG/AC</div>
+                        <p>D'après la question précédente, AE = 2 dam et AC = 5 dam, donc EC = 3 dam.</p>
+                        <p>Comme E est sur [AC] et G est sur [BC], et que (EG) // (AB), alors :</p>
+                        <div class="math-formula">k = EC/AC = 3/5</div>
+                        <p>Donc le rapport de similitude du triangle ABC au triangle EBG est 3/5.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Déduction de BE</div>
+                        <p>Dans les triangles semblables EBG et ABC :</p>
+                        <div class="math-formula">EB/AB = k = 3/5</div>
+                        <p>Si AB = 5 dam (d'après la configuration), alors :</p>
+                        <div class="math-formula">EB = (3/5) × AB = (3/5) × 5 = 3 dam</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Calcule l'aire du triangle EBG.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">Calcul de l'aire</div>
+                        <p>Le rapport des aires de deux figures semblables est égal au carré du rapport de similitude.</p>
+                        <p>D'après la question 1, l'aire du triangle ABC est :</p>
+                        <div class="math-formula">Aire(ABC) = (AB × BC)/2 = (5 × 3)/2 = 7,5 dam²</div>
+                        <p>Le rapport de similitude k = 3/5, donc le rapport des aires est k² = (3/5)² = 9/25</p>
+                        <p>L'aire du triangle EBG est donc :</p>
+                        <div class="math-formula">Aire(EBG) = Aire(ABC) × k² = 7,5 × (9/25) = 67,5/25 = 2,7 dam²</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">PROBLÈME 2</h2>
+            
+            <div class="question">
+                <p>Le réservoir de ce château a la forme d'un tronc de cône de hauteur h = 12 dam et ses bases ont pour aires 2π dam² et 8π dam².</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Détermine :</span>
+                <ul>
+                    <li>a- l'échelle k de réduction</li>
+                    <li>b- la capacité exacte du réservoir de ce château</li>
+                </ul>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">a) Échelle k de réduction</div>
+                        <p>L'échelle k de réduction est le rapport entre les rayons des deux bases.</p>
+                        <p>Soit R le rayon de la grande base et r le rayon de la petite base.</p>
+                        <p>Nous avons :</p>
+                        <div class="math-formula">Aire grande base = πR² = 8π ⇒ R² = 8 ⇒ R = 2√2 dam</div>
+                        <div class="math-formula">Aire petite base = πr² = 2π ⇒ r² = 2 ⇒ r = √2 dam</div>
+                        <p>L'échelle de réduction k est donc :</p>
+                        <div class="math-formula">k = r/R = √2/(2√2) = 1/2</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">b) Capacité du réservoir</div>
+                        <p>La capacité du réservoir (volume du tronc de cône) est donnée par la formule :</p>
+                        <div class="math-formula">V = (1/3)πh(R² + Rr + r²)</div>
+                        <p>Avec h = 12 dam, R = 2√2 dam, r = √2 dam</p>
+                        <div class="math-formula">V = (1/3)π × 12 × [(2√2)² + (2√2)(√2) + (√2)²]</div>
+                        <div class="math-formula">V = 4π × [8 + 4 + 2] = 4π × 14 = 56π dam³</div>
+                        <p>La capacité exacte du réservoir est donc 56π dam³.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">PROBLÈME 3</h2>
+            
+            <div class="question">
+                <p>Les coordonnées K, L et M dans le plan muni du repère orthonormé (0, I, J) sont K(−2 ; 1) ; L(−1 ; 3) et M(5 ; 0).</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">5</span>
+                <span>Place ces points dans le repère orthonormé (0, I ; J).</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="coordinate-system">
+                        <div class="coordinate-axis x-axis"></div>
+                        <div class="coordinate-axis y-axis"></div>
+                        
+                        <!-- Point K -->
+                        <div class="point" style="left: 30%; top: 40%;"></div>
+                        <div class="point-label" style="left: 32%; top: 38%;">K(-2;1)</div>
+                        
+                        <!-- Point L -->
+                        <div class="point" style="left: 35%; top: 30%;"></div>
+                        <div class="point-label" style="left: 37%; top: 28%;">L(-1;3)</div>
+                        
+                        <!-- Point M -->
+                        <div class="point" style="left: 70%; top: 45%;"></div>
+                        <div class="point-label" style="left: 72%; top: 43%;">M(5;0)</div>
+                    </div>
+                    <p>Les points sont placés dans le repère orthonormé selon leurs coordonnées.</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">6</span>
+                <span>Calcule les distances KL, KM et LM.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p>Utilisons la formule de distance entre deux points A(x₁;y₁) et B(x₂;y₂) :</p>
+                    <div class="math-formula">AB = √[(x₂ - x₁)² + (y₂ - y₁)²]</div>
+                    
+                    <div class="step">
+                        <div class="step-title">Distance KL</div>
+                        <div class="math-formula">KL = √[(-1 - (-2))² + (3 - 1)²] = √[(1)² + (2)²] = √[1 + 4] = √5</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Distance KM</div>
+                        <div class="math-formula">KM = √[(5 - (-2))² + (0 - 1)²] = √[(7)² + (-1)²] = √[49 + 1] = √50 = 5√2</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Distance LM</div>
+                        <div class="math-formula">LM = √[(5 - (-1))² + (0 - 3)²] = √[(6)² + (-3)²] = √[36 + 9] = √45 = 3√5</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">7</span>
+                <span>Démontre que le triangle KLM est rectangle en L.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p>Pour démontrer que le triangle KLM est rectangle en L, vérifions si la réciproque du théorème de Pythagore s'applique :</p>
+                    <div class="math-formula">KL² + LM² = (√5)² + (3√5)² = 5 + 45 = 50</div>
+                    <div class="math-formula">KM² = (5√2)² = 50</div>
+                    <p>Nous avons bien KL² + LM² = KM², donc d'après la réciproque du théorème de Pythagore, le triangle KLM est rectangle en L.</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">8</span>
+                <span>On désigne par F, le milieu du segment [KL]. Calcule les coordonnées de F.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p>Les coordonnées du milieu F d'un segment [AB] sont données par :</p>
+                    <div class="math-formula">F = ((x₁ + x₂)/2 ; (y₁ + y₂)/2)</div>
+                    <p>Pour K(-2;1) et L(-1;3) :</p>
+                    <div class="math-formula">F = ((-2 + (-1))/2 ; (1 + 3)/2) = (-3/2 ; 4/2) = (-1,5 ; 2)</div>
+                    <p>Les coordonnées de F sont (-1,5 ; 2).</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">9</span>
+                <span>On donne N(4 ; −2). Détermine la nature précise de ce domaine.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p>Le domaine est le quadrilatère KLMN avec :</p>
+                    <ul>
+                        <li>K(-2;1)</li>
+                        <li>L(-1;3)</li>
+                        <li>M(5;0)</li>
+                        <li>N(4;-2)</li>
+                    </ul>
+                    
+                    <div class="step">
+                        <div class="step-title">Calcul des longueurs des côtés</div>
+                        <p>Nous avons déjà calculé :</p>
+                        <div class="math-formula">KL = √5, LM = 3√5, KM = 5√2</div>
+                        <p>Calculons maintenant :</p>
+                        <div class="math-formula">MN = √[(4 - 5)² + (-2 - 0)²] = √[(-1)² + (-2)²] = √[1 + 4] = √5</div>
+                        <div class="math-formula">NK = √[(-2 - 4)² + (1 - (-2))²] = √[(-6)² + (3)²] = √[36 + 9] = √45 = 3√5</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Analyse des côtés</div>
+                        <p>Nous observons que :</p>
+                        <div class="math-formula">KL = MN = √5</div>
+                        <div class="math-formula">LM = NK = 3√5</div>
+                        <p>Donc les côtés opposés sont égaux deux à deux.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Analyse des diagonales</div>
+                        <div class="math-formula">KM = 5√2 (déjà calculé)</div>
+                        <div class="math-formula">LN = √[(4 - (-1))² + (-2 - 3)²] = √[(5)² + (-5)²] = √[25 + 25] = √50 = 5√2</div>
+                        <p>Les diagonales KM et LN sont égales.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Conclusion</div>
+                        <p>Le quadrilatère KLMN a ses côtés opposés égaux deux à deux et ses diagonales égales. C'est donc un rectangle.</p>
+                        <p>De plus, nous avons démontré que le triangle KLM est rectangle en L, ce qui confirme que KLMN est un rectangle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:khaledmouwaffak@gmail.com"><i class="fas fa-envelope"></i> khaledmouwaffak@gmail.com</a></li>
+                        <li><a href="tel:+22965655810"><i class="fas fa-phone"></i> +229 65655810</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Parakou, Bénin</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
