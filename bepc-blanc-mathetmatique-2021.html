@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC Blanc 2021 - Mathématiques - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .math-expression {
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .math-center {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .fraction {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0 0.2em;
+        }
+
+        .fraction span {
+            display: block;
+        }
+
+        .fraction .numerator {
+            padding: 0 5px;
+            border-bottom: 1px solid #000;
+        }
+
+        .fraction .denominator {
+            padding: 0 5px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+            
+            .math-expression {
+                font-size: 1rem;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC Blanc 2021 - Mathématiques</h1>
+                <p>Collège Catholique "Les Hibiscus"</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Mathématiques</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Série</span>
+                <span>MC/ML</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>03/02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Contexte de l'épreuve</h2>
+            <p>C'est l'harmattan dans le village KOKOKO au nord du pays, un grand feu de brousse a ravagé une partie du village laissant en ruine beaucoup de maisons. Le chef de village a invité les politiciens natifs de la localité pour une concertation en vue de prendre des mesures pour aider les sinistrés.</p>
+            <p>Le podium sur le site destiné à accueillir le comité communal est érigé sur une portion de terre IIK. Sur cette figure, on a II = 2√2 m et la droite (AB) est parallèle à la droite (IK).</p>
+            <p>Monsieur Seton, un des sinistrés doit vendre un de ses champs pour reprendre les plantations. Le prix en millions de francs CFA proposé est élément d'un des ensembles de nombres réels E1 et E2.</p>
+            <p>Raliath fille du chef de village et élève en classe de 3ème, doit se charger de l'installation des invités. Elle doit donc maîtriser le site, aider à l'installation du podium, aider Monsieur Seton à identifier l'intervalle en question ; et aider à la détermination du coût de vente des nouvelles cultures faites par l'un des sinistrés.</p>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Problème 2</h2>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>(a) Écris sans radical au dénominateur :</span>
+                <div class="math-center math-expression">
+                    \( \frac{3+\sqrt{5}}{3-\sqrt{5}} \) et \( \frac{3-\sqrt{5}}{3+\sqrt{5}} \)
+                </div>
+                <span>(b) Déduis-en une écriture simplifiée de C₁.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="step">
+                    <div class="step-title">3(a) Rationalisation des dénominateurs</div>
+                    <p>Pour \( \frac{3+\sqrt{5}}{3-\sqrt{5}} \) :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">
+                            \( \frac{3+\sqrt{5}}{3-\sqrt{5}} = \frac{(3+\sqrt{5})^2}{(3-\sqrt{5})(3+\sqrt{5})} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{9 + 6\sqrt{5} + 5}{9 - 5} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{14 + 6\sqrt{5}}{4} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{7 + 3\sqrt{5}}{2} \)
+                        </div>
+                    </div>
+                    
+                    <p>Pour \( \frac{3-\sqrt{5}}{3+\sqrt{5}} \) :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">
+                            \( \frac{3-\sqrt{5}}{3+\sqrt{5}} = \frac{(3-\sqrt{5})^2}{(3+\sqrt{5})(3-\sqrt{5})} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{9 - 6\sqrt{5} + 5}{9 - 5} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{14 - 6\sqrt{5}}{4} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{7 - 3\sqrt{5}}{2} \)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">3(b) Simplification de C₁</div>
+                    <p>On a :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">
+                            \( C_1 = \frac{3+\sqrt{5}}{3-\sqrt{5}} + \frac{3-\sqrt{5}}{3+\sqrt{5}} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{7 + 3\sqrt{5}}{2} + \frac{7 - 3\sqrt{5}}{2} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{14}{2} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = 7 \)
+                        </div>
+                    </div>
+                    <p>Ainsi, \( C_1 = 7 \) milliers de FCFA.</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Écris plus simplement C₂.</span>
+                <div class="math-expression">
+                    \( C_2 = \frac{(8\sqrt{5}+3)^2 + (8\sqrt{5}-3)^2}{3} \)
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="step">
+                    <div class="step-title">Calcul de \( (8\sqrt{5}+3)^2 \) :</div>
+                    <div class="solution-box">
+                        <div class="math-expression">
+                            \( (8\sqrt{5}+3)^2 = (8\sqrt{5})^2 + 2 \times 8\sqrt{5} \times 3 + 3^2 \)
+                        </div>
+                        <div class="math-expression">
+                            \( = 64 \times 5 + 48\sqrt{5} + 9 \)
+                        </div>
+                        <div class="math-expression">
+                            \( = 320 + 48\sqrt{5} + 9 \)
+                        </div>
+                        <div class="math-expression">
+                            \( = 329 + 48\sqrt{5} \)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Calcul de \( (8\sqrt{5}-3)^2 \) :</div>
+                    <div class="solution-box">
+                        <div class="math-expression">
+                            \( (8\sqrt{5}-3)^2 = (8\sqrt{5})^2 - 2 \times 8\sqrt{5} \times 3 + 3^2 \)
+                        </div>
+                        <div class="math-expression">
+                            \( = 320 - 48\sqrt{5} + 9 \)
+                        </div>
+                        <div class="math-expression">
+                            \( = 329 - 48\sqrt{5} \)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Calcul de C₂ :</div>
+                    <div class="solution-box">
+                        <div class="math-expression">
+                            \( C_2 = \frac{(329 + 48\sqrt{5}) + (329 - 48\sqrt{5})}{3} \)
+                        </div>
+                        <div class="math-expression">
+                            \( = \frac{658}{3} \)
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Ainsi, \( C_2 = \frac{658}{3} \) milliers de FCFA.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">5</span>
+                <span>Détermine le coût total des ventes.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p>Le coût total est la somme de C₁ et C₂ :</p>
+                <div class="solution-box">
+                    <div class="math-expression">
+                        \( C_1 + C_2 = 7 + \frac{658}{3} \)
+                    </div>
+                    <div class="math-expression">
+                        \( = \frac{21}{3} + \frac{658}{3} \)
+                    </div>
+                    <div class="math-expression">
+                        \( = \frac{679}{3} \)
+                    </div>
+                </div>
+                <p>Le coût total des ventes est donc \( \frac{679}{3} \) milliers de FCFA, soit environ 226 333 FCFA.</p>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Problème 3</h2>
+            
+            <div class="question">
+                <span class="question-number">6</span>
+                <span>(a) Étudie le signe de chacun des nombres réels \(2-\sqrt{5}\) et \(2+\sqrt{5}\).</span><br>
+                <span>(b) Calcule \((2-\sqrt{5})^2\) et \((2+\sqrt{5})^2\).</span><br>
+                <span>(c) Déduis-en que \(x = 1+2\sqrt{5}\).</span><br>
+                <span>(d) Donne un encadrement de x par deux nombres décimaux consécutifs d'ordre 2 sachant que \(2,236 < \sqrt{5} < 2,237\).</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="step">
+                    <div class="step-title">6(a) Signe des expressions</div>
+                    <p>On sait que \( \sqrt{5} \approx 2,236 \), donc :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">\( 2 - \sqrt{5} \approx 2 - 2,236 = -0,236 < 0 \)</div>
+                        <div class="math-expression">\( 2 + \sqrt{5} \approx 2 + 2,236 = 4,236 > 0 \)</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">6(b) Calcul des carrés</div>
+                    <div class="solution-box">
+                        <div class="math-expression">\( (2-\sqrt{5})^2 = 4 - 4\sqrt{5} + 5 = 9 - 4\sqrt{5} \)</div>
+                        <div class="math-expression">\( (2+\sqrt{5})^2 = 4 + 4\sqrt{5} + 5 = 9 + 4\sqrt{5} \)</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">6(c) Démonstration que \( x = 1+2\sqrt{5} \)</div>
+                    <p>On a : \( x = 1 + \sqrt{9-4\sqrt{5}} + \sqrt{9+4\sqrt{5}} \)</p>
+                    <p>D'après (b), on a :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">\( \sqrt{9-4\sqrt{5}} = \sqrt{(2-\sqrt{5})^2} = |2-\sqrt{5}| \)</div>
+                        <div class="math-expression">\( \sqrt{9+4\sqrt{5}} = \sqrt{(2+\sqrt{5})^2} = |2+\sqrt{5}| \)</div>
+                    </div>
+                    <p>D'après (a), \( 2-\sqrt{5} < 0 \), donc \( |2-\sqrt{5}| = -(2-\sqrt{5}) = \sqrt{5}-2 \)</p>
+                    <p>Et \( 2+\sqrt{5} > 0 \), donc \( |2+\sqrt{5}| = 2+\sqrt{5} \)</p>
+                    <p>Ainsi :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">\( x = 1 + (\sqrt{5}-2) + (2+\sqrt{5}) \)</div>
+                        <div class="math-expression">\( = 1 + \sqrt{5} - 2 + 2 + \sqrt{5} \)</div>
+                        <div class="math-expression">\( = 1 + 2\sqrt{5} \)</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">6(d) Encadrement de x</div>
+                    <p>On a \( x = 1 + 2\sqrt{5} \) et \( 2,236 < \sqrt{5} < 2,237 \)</p>
+                    <p>Donc :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">\( 1 + 2 \times 2,236 < x < 1 + 2 \times 2,237 \)</div>
+                        <div class="math-expression">\( 1 + 4,472 < x < 1 + 4,474 \)</div>
+                        <div class="math-expression">\( 5,472 < x < 5,474 \)</div>
+                    </div>
+                    <p>L'encadrement de x par deux nombres décimaux consécutifs d'ordre 2 est :</p>
+                    <div class="math-center math-expression">\( 5,47 < x < 5,48 \)</div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">7</span>
+                <span>(a) Écris les ensembles E₁ et E₂ sous forme d'intervalle de \( \mathbb{R} \).</span><br>
+                <span>(b) Déduis-en le prix maximal proposé par Monsieur Sèton.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="step">
+                    <div class="step-title">7(a) Écriture des ensembles</div>
+                    <p>On a :</p>
+                    <div class="solution-box">
+                        <div class="math-expression">\( E_1 = ]-\infty; 6] \cap ]0; 8[ = ]0; 6] \)</div>
+                        <div class="math-expression">\( E_2 = ]-\infty; 2] \cup ]1; 5] = ]-\infty; 5] \) (car \( ]-\infty; 2] \cup ]1; 5] = ]-\infty; 5] \))</div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">7(b) Prix maximal proposé</div>
+                    <p>On sait que \( x = 1 + 2\sqrt{5} \approx 5,472 \)</p>
+                    <p>Et \( x \) est élément de l'ensemble en question.</p>
+                    <p>Vérifions dans quel ensemble se trouve x :</p>
+                    <ul>
+                        <li>Dans E₁ = ]0; 6] : \( 5,472 \in ]0; 6] \) ✓</li>
+                        <li>Dans E₂ = ]-∞; 5] : \( 5,472 \notin ]-∞; 5] \) car 5,472 > 5 ✗</li>
+                    </ul>
+                    <p>Donc x ∈ E₁.</p>
+                    <p>Le prix maximal proposé par Monsieur Sèton est donc le plus grand élément de E₁, soit 6 millions de FCFA.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
