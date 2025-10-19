@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - Histoire-Géographie - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Tableau des compétences */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .skills-table th, .skills-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .skills-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .skills-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .text-content {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+            line-height: 1.8;
+        }
+
+        .text-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .text-author {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1rem;
+            color: var(--gray);
+        }
+
+        .highlight-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Histoire et Géographie</h1>
+                <p>Session Normale - COLLECTIF DES COLLÈGES PRIVÉS DU BORGOU</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Histoire et Géographie</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Grille d'évaluation</h2>
+            
+            <table class="skills-table">
+                <thead>
+                    <tr>
+                        <th>Compétences disciplinaires</th>
+                        <th>Critères d'évaluation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            • Expliquer un fait ou un phénomène en Histoire et en Géographie<br>
+                            • Agir dans le sens de la bonne gestion des ressources en Histoire et en Géographie
+                        </td>
+                        <td>
+                            <strong>Critères minimaux</strong><br>
+                            - Interprétation correcte de la situation<br>
+                            - Utilisation correcte des outils de la discipline<br>
+                            - Cohérence interne<br><br>
+                            <strong>Critère de perfectionnement</strong><br>
+                            - Qualité de la langue
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">I - HISTOIRE : Explication de texte</h2>
+            
+            <div class="question">
+                <p><strong>Contexte d'évaluation :</strong> La colonisation de l'Afrique par les Européens n'est pas sans conséquence sur ce continent.</p>
+                <p><strong>Tâche :</strong> Sur la base de tes savoirs construits et du support, tu es invité(e) à produire une explication des conséquences négatives de la colonisation européenne en Afrique.</p>
+            </div>
+
+            <div class="text-content">
+                <div class="text-title">Texte : Conséquences de la colonisation en Afrique</div>
+                
+                <p>La colonisation est à l'origine de la balkanisation de l'Afrique et la fragilisation de la société traditionnelle. Elle a introduit l'individualisme et a contribué à la destruction des valeurs culturelles africaines. Elle a procédé à une exploitation sauvage et malhonnête des matières premières dans la mesure où elle n'a favorisé que l'épuisement des colonies. Elle a donc préparé le lit au sous-développement que végètent les pays africains.</p>
+                
+                <p>En définitive, la colonisation a fait plus de mal que de bien aux populations africaines. Les séquelles en sont encore visibles aujourd'hui.</p>
+                
+                <div class="text-author">
+                    https://www.monasoukulu.com - Consulté le 18 février 2022 à 14 heures
+                </div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Présente le texte en insistant sur la source et l'idée générale.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">Présentation du texte</div>
+                        <p><strong>Source :</strong> Ce texte est tiré du site internet www.monasoukulu.com, consulté le 18 février 2022. Il s'agit d'une source numérique qui présente une analyse critique des conséquences de la colonisation européenne en Afrique.</p>
+                        
+                        <p><strong>Idée générale :</strong> Le texte présente une vision négative de la colonisation en Afrique, affirmant qu'elle a causé plus de torts que de bienfaits aux populations africaines. L'auteur soutient que la colonisation est responsable de nombreux problèmes actuels du continent, notamment la balkanisation politique, l'affaiblissement des structures sociales traditionnelles, la destruction des valeurs culturelles, l'exploitation économique abusive et le sous-développement persistant.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Explique les aspects négatifs de la colonisation en Afrique.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">1. Balkanisation politique de l'Afrique</div>
+                        <p>La colonisation a divisé l'Afrique selon les intérêts des puissances européennes, sans tenir compte des réalités ethniques, culturelles et historiques :</p>
+                        <ul>
+                            <li>Création de frontières artificielles qui séparent des peuples apparentés</li>
+                            <li>Regroupement forcé de populations différentes et parfois rivales dans les mêmes colonies</li>
+                            <li>Cette division artificielle est à l'origine de nombreux conflits frontaliers et ethniques après les indépendances</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">2. Fragilisation de la société traditionnelle</div>
+                        <p>La colonisation a profondément bouleversé les structures sociales africaines :</p>
+                        <ul>
+                            <li>Affaiblissement des autorités traditionnelles et des systèmes de gouvernance locaux</li>
+                            <li>Introduction de l'individualisme au détriment des valeurs communautaires</li>
+                            <li>Déstabilisation des systèmes familiaux et des relations sociales traditionnelles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">3. Destruction des valeurs culturelles</div>
+                        <p>La colonisation a imposé une acculturation forcée :</p>
+                        <ul>
+                            <li>Mépris et interdiction des cultures, langues et religions africaines</li>
+                            <li>Imposition des langues et cultures européennes comme seules valables</li>
+                            <li>Alienation culturelle créant un complexe d'infériorité chez les Africains</li>
+                            <li>Perte d'identité culturelle et de repères traditionnels</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">4. Exploitation économique abusive</div>
+                        <p>L'économie coloniale était organisée au profit exclusif des métropoles :</p>
+                        <ul>
+                            <li>Exploitation intensive des ressources naturelles sans souci de renouvellement</li>
+                            <li>Développement de cultures d'exportation au détriment des cultures vivrières</li>
+                            <li>Mise en place d'un système commercial désavantageux pour les Africains</li>
+                            <li>Non-développement d'industries locales de transformation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">5. Préparation du sous-développement</div>
+                        <p>La colonisation a créé les conditions du sous-développement actuel :</p>
+                        <ul>
+                            <li>Infrastructures conçues uniquement pour l'exportation des matières premières</li>
+                            <li>Formation d'une élite coupée des réalités locales</li>
+                            <li>Héritage de dettes et de structures économiques dépendantes</li>
+                            <li>Maintien des anciennes colonies dans une situation de dépendance économique après les indépendances</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Dégage l'intérêt de l'étude de ce texte.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">Intérêt historique</div>
+                        <p>Ce texte permet de :</p>
+                        <ul>
+                            <li>Comprendre les causes profondes des problèmes actuels de l'Afrique</li>
+                            <li>Analyser de manière critique l'héritage colonial et ses conséquences durables</li>
+                            <li>Éviter une vision simpliste ou apologétique de la colonisation</li>
+                            <li>Contextualiser les relations internationales contemporaines entre l'Afrique et l'Europe</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Intérêt éducatif et civique</div>
+                        <p>L'étude de ce texte a pour intérêt de :</p>
+                        <ul>
+                            <li>Développer l'esprit critique face aux discours historiques</li>
+                            <li>Comprendre l'importance de préserver l'identité culturelle</li>
+                            <li>Sensibiliser aux enjeux du développement et de la souveraineté des nations</li>
+                            <li>Promouvoir une réflexion sur les modèles de développement adaptés aux réalités africaines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Intérêt méthodologique</div>
+                        <p>Ce texte permet d'apprendre à :</p>
+                        <ul>
+                            <li>Analyser un document historique de manière critique</li>
+                            <li>Distinguer les faits historiques des interprétations</li>
+                            <li>Confronter différents points de vue sur un même phénomène historique</li>
+                            <li>Développer une argumentation structurée sur une question historique complexe</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">II - GÉOGRAPHIE : Dissertation</h2>
+            
+            <div class="question">
+                <p><strong>Contexte d'évaluation/Tâche :</strong> Tu as suivi sur la chaîne de télévision nationale le discours du président Patrice Talon à l'occasion de la cérémonie de restitution de 26 œuvres du patrimoine culturel béninois. Pour contribuer à l'essor des activités touristiques au Bénin, tu es invité(e) à produire un texte cohérent sur la gestion des activités touristiques au Bénin.</p>
+            </div>
+
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Présente les ressources touristiques disponibles au Bénin.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">A. Patrimoine culturel et historique</div>
+                        <ul>
+                            <li><strong>Patrimoine du royaume du Dahomey :</strong> Palais royaux d'Abomey classés au patrimoine mondial de l'UNESCO</li>
+                            <li><strong>Villes historiques :</strong> Ouidah avec sa route de l'esclave et sa porte du non-retour</li>
+                            <li><strong>Musées :</strong> Musée d'Abomey, Musée d'histoire de Ouidah, Musée Honmé à Porto-Novo</li>
+                            <li><strong>Art et artisanat :</strong> Sculptures, bronzes, tissage, vannerie, poterie</li>
+                            <li><strong>Festivals et traditions :</strong> Fête du Vodoun, Guélédé, festivals culturels régionaux</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">B. Patrimoine naturel</div>
+                        <ul>
+                            <li><strong>Parcs nationaux :</strong> Parc national de la Pendjari (réserve de biosphère), Parc national du W</li>
+                            <li><strong>Réserves naturelles :</strong> Réserve de la biosphère de la Boucle du Mouhoun</li>
+                            <li><strong>Écosystèmes variés :</strong> Forêts, savanes, zones humides, littoral</li>
+                            <li><strong>Faune sauvage :</strong> Éléphants, lions, buffles, antilopes, oiseaux migrateurs</li>
+                            <li><strong>Sites naturels :</strong> Chutes de Kota, lac Ahémé, bouche du Roy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">C. Patrimoine architectural et urbain</div>
+                        <ul>
+                            <li><strong>Architecture coloniale :</strong> Bâtiments de style colonial à Cotonou, Porto-Novo, Ouidah</li>
+                            <li><strong>Architecture vernaculaire :</strong> Cases traditionnelles, tata somba</li>
+                            <li><strong>Édifices religieux :</strong> Cathédrale de Ouidah, mosquée de Porto-Novo</li>
+                            <li><strong>Villes côtières :</strong> Grand-Popo, Cotonou avec leurs plages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Expose les problèmes qui freinent le développement du tourisme au Bénin.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">A. Problèmes infrastructurels</div>
+                        <ul>
+                            <li><strong>Infrastructures d'accueil limitées :</strong> Nombre insuffisant d'hôtels de qualité, surtout dans l'intérieur du pays</li>
+                            <li><strong>Transport :</strong> Réseau routier déficient, difficultés d'accès aux sites touristiques éloignés</li>
+                            <li><strong>Équipements sanitaires :</strong> Manque d'infrastructures sanitaires modernes dans certaines zones touristiques</li>
+                            <li><strong>Communication :</strong> Couverture internet et téléphonique insuffisante dans les régions reculées</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">B. Problèmes de promotion et de marketing</div>
+                        <ul>
+                            <li><strong>Visibilité internationale faible :</strong> Le Bénin est peu connu comme destination touristique</li>
+                            <li><strong>Marketing touristique insuffisant :</strong> Manque de campagnes promotionnelles efficaces à l'international</li>
+                            <li><strong>Image du pays :</strong> Perception parfois négative de l'Afrique de l'Ouest comme destination</li>
+                            <li><strong>Documentation touristique :</strong> Manque de guides, cartes et documentation en plusieurs langues</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">C. Problèmes de gestion et de formation</div>
+                        <ul>
+                            <li><strong>Formation professionnelle :</strong> Manque de personnel qualifié dans l'hôtellerie et le tourisme</li>
+                            <li><strong>Gestion des sites :</strong> Entretien insuffisant des sites touristiques et musées</li>
+                            <li><strong>Sécurité :</strong> Préoccupations sécuritaires dans certaines régions</li>
+                            <li><strong>Coordination :</strong> Manque de coordination entre les différents acteurs du tourisme</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">D. Problèmes liés à l'offre touristique</div>
+                        <ul>
+                            <li><strong>Diversification insuffisante :</strong> Offre touristique peu variée, centrée sur quelques sites</li>
+                            <li><strong>Accessibilité financière :</strong> Coût élevé pour certains touristes potentiels</li>
+                            <li><strong>Saisonnalité :</strong> Concentration de l'activité touristique sur certaines périodes</li>
+                            <li><strong>Produits dérivés :</strong> Manque de souvenirs et produits artisanaux de qualité</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Propose trois (3) actions concrètes pour la valorisation du patrimoine culturel à des fins touristiques.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="highlight-box">
+                        <p><strong>Action 1 : Création d'un circuit touristique intégré "Route des Royaumes"</strong></p>
+                        <ul>
+                            <li>Développer un circuit reliant les sites historiques majeurs (Abomey, Allada, Porto-Novo, Ouidah)</li>
+                            <li>Aménager des centres d'interprétation avec technologies modernes (réalité augmentée, audioguides)</li>
+                            <li>Former des guides spécialisés sur l'histoire des royaumes et la traite négrière</li>
+                            <li>Créer des spectacles son et lumière sur les sites historiques</li>
+                            <li>Éditer des supports multilingues (guides, applications mobiles)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Action 2 : Mise en place d'un programme de restitution et valorisation des œuvres d'art</strong></p>
+                        <ul>
+                            <li>Poursuivre les négociations pour la restitution d'œuvres d'art patrimoniales</li>
+                            <li>Construire un musée moderne aux normes internationales pour exposer les œuvres restituées</li>
+                            <li>Organiser des expositions itinérantes internationales avec les œuvres restituées</li>
+                            <li>Développer des reproductions de qualité pour la vente aux touristes</li>
+                            <li>Créer des ateliers où les touristes peuvent observer des artisans travaillant selon les techniques traditionnelles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Action 3 : Développement d'un tourisme culturel communautaire</strong></p>
+                        <ul>
+                            <li>Impliquer les communautés locales dans la gestion des sites touristiques</li>
+                            <li>Créer des maisons d'hôtes authentiques chez l'habitant</li>
+                            <li>Organiser des festivals culturels régionaux mettant en valeur les traditions locales</li>
+                            <li>Développer des circuits de découverte des métiers artisanaux traditionnels</li>
+                            <li>Former les jeunes aux métiers du tourisme et à l'entreprenariat culturel</li>
+                            <li>Créer des coopératives artisanales pour commercialiser les produits locaux</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:khaledmouwaffak@gmail.com"><i class="fas fa-envelope"></i> khaledmouwaffak@gmail.com</a></li>
+                        <li><a href="tel:+22965655810"><i class="fas fa-phone"></i> +229 65655810</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Parakou, Bénin</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
