@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - Espagnol - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .text-content {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .text-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            text-align: center;
+        }
+
+        .text-author {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1rem;
+            color: var(--gray);
+        }
+
+        .vocabulary-box {
+            background-color: #e7f1ff;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .vocabulary-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .spanish-word {
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        .exercise-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Espagnol</h1>
+                <p>Session Normale - COLLECTIF DES COLLÈGES PRIVÉS DU BORGOU</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Espagnol</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Situation d'évaluation</h2>
+            
+            <div class="question">
+                <p><strong>Compétences évaluées :</strong></p>
+                <ul>
+                    <li>Réagir de façon adéquate face à un texte lu</li>
+                    <li>Produire un texte écrit</li>
+                </ul>
+                
+                <p><strong>Contexte :</strong> Quand un jeune a un projet sérieux comme celui du mariage, il doit le soumettre à ses parents pour recueillir leur avis. Présenter sa fiancée à sa mère est le souci du rédacteur de cette lettre.</p>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">I - Réagir de façon adéquate face à un texte lu</h2>
+            
+            <div class="question">
+                <p>Lis attentivement le texte qui suit et montre que tu l'as compris à travers les capacités et habiletés suivantes :</p>
+                <ul>
+                    <li>Identifier le type de texte</li>
+                    <li>Identifier le caractère des personnages</li>
+                    <li>Trouver des éléments de réponses à des questions posées sur le texte</li>
+                    <li>Prouver sa maîtrise des fonctions de langue</li>
+                </ul>
+            </div>
+
+            <div class="text-content">
+                <div class="text-title">Una carta</div>
+                
+                <p>"Querida madre"</p>
+                
+                <p>Le escribo a usted estas dos líneas para comunicarle una noticia que sé que la va a agradar a usted. Antes de dársela quiero desearle que su salud sea perfecta como la mía lo es por el momento, a Dios gracias sean dadas, y que siga usted disfrutándola muchos años en compañía de la buena hermana Paquita, y de su esposo y nenes.</p>
+                
+                <p>Pues, madre, lo que tengo que decir es que ya no estoy solo en el mundo, aparte de ustedes, y que he encontrado la mujer que me puede ayudar a fundar una familia y a erigir un hogar, y que puede acompañarme en el trabajo y que ha de hacer feliz, si Dios quiere, con sus virtudes de buena cristiana. A ver si para el verano se anima usted a visitar a este hijo que tanto la echa de menos y así la conoce.</p>
+                
+                <p>Pues, madre, he de decirla que de los gastos del viaje no debe preocuparse y que yo, sólo por verla a usted, ya sabe que pagaría eso y mucho más. Ya verá usted cómo mi novia le parece un ángel. Es buena y hacendosa y tan lucida como honrada. Su mismo nombre de pila, que es Esperanza, ya viene a ser como eso, una esperanza de que todo salga con bien. Pida usted mucho a Dios por nuestra futura felicidad, que será también la antorcha que alumbrará su vejez.</p>
+                
+                <p>Sin más por hoy, reciba usted, querida madre, el beso de cariño de su hijo que mucho la quiere y no la olvida.</p>
+                
+                <p>Tinín".</p>
+                
+                <div class="text-author">
+                    Camilo José Cela, La colmena
+                </div>
+            </div>
+
+            <div class="vocabulary-box">
+                <div class="vocabulary-title">Vocabulario</div>
+                <p><span class="spanish-word">Una noticia :</span> une nouvelle</p>
+                <p><span class="spanish-word">un novio :</span> un fiancé</p>
+                <p><span class="spanish-word">desear :</span> souhaiter</p>
+                <p><span class="spanish-word">Una virtud :</span> une vertu</p>
+                <p><span class="spanish-word">alumbrar :</span> éclairer</p>
+            </div>
+
+            <h3 class="problem-subtitle">A- Muestra que comprendes el texto</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Elige la buena respuesta y escribe la frase completa.</span>
+                <div class="exercise-box">
+                    <p>a. El texto es:</p>
+                    <p>a1. una canción</p>
+                    <p>a2. una carta</p>
+                    <p>a3. un poema</p>
+                    
+                    <p>b. La novia del autor es:</p>
+                    <p>b1. una persona cariñosa</p>
+                    <p>b2. una mala persona</p>
+                    <p>b3. una persona perezosa</p>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>a. El texto es:</strong> una carta</p>
+                    <p><strong>Justification :</strong> Le texte commence par "Querida madre" et se termine par une signature, ce qui correspond à la structure d'une lettre.</p>
+                    
+                    <p><strong>b. La novia del autor es:</strong> una persona cariñosa</p>
+                    <p><strong>Justification :</strong> L'auteur décrit sa fiancée comme "buena y hacendosa y tan lucida como honrada" (bonne, travailleuse, intelligente et honnête).</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Encuentra en el texto:</span>
+                <div class="exercise-box">
+                    <p>a- La palabra sinónima de: marido</p>
+                    <p>b- La palabra antónima de infeliz</p>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>a- Sinónimo de "marido":</strong> esposo</p>
+                    <p><strong>Localisation dans le texte :</strong> "...en compañía de la buena hermana Paquita, y de su esposo y nenes."</p>
+                    
+                    <p><strong>b- Antónimo de "infeliz":</strong> feliz</p>
+                    <p><strong>Localisation dans le texte :</strong> "...y que ha de hacer feliz, si Dios quiere, con sus virtudes de buena cristiana."</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Contesta las preguntas sobre el texto</span>
+                <div class="exercise-box">
+                    <p>a- ¿Quién escribe la carta? ¿A quién la dirige?</p>
+                    <p>b- ¿Qué noticia comunica el autor de la carta a su madre?</p>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>a- ¿Quién escribe la carta? ¿A quién la dirige?</strong></p>
+                    <p>La carta es escrita por Tinín (el hijo) y la dirige a su madre.</p>
+                    
+                    <p><strong>b- ¿Qué noticia comunica el autor de la carta a su madre?</strong></p>
+                    <p>El autor comunica a su madre que ha encontrado una mujer con quien quiere fundar una familia y que se va a casar. Le presenta a su novia Esperanza y le pide que venga a conocerla durante el verano.</p>
+                </div>
+            </div>
+
+            <h3 class="problem-subtitle">B- Realiza las obras lingüísticas siguientes</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Pasa al pretérito indefinido</span>
+                <div class="exercise-box">
+                    <p>Le presento mi novia que parece un ángel.</p>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Respuesta:</strong> Le presenté mi novia que pareció un ángel.</p>
+                    <p><strong>Explicación:</strong> "presento" (presente) se convierte en "presenté" (pretérito indefinido) y "parece" (presente) se convierte en "pareció" (pretérito indefinido).</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Sustituye lo subrayado por otro equivalente</span>
+                <div class="exercise-box">
+                    <p>a. Pues, madre, he de decirla.</p>
+                    <p>b. Ya no estoy solo en el mundo.</p>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>a. Pues, madre, he de decirla.</strong></p>
+                    <p><strong>Respuesta:</strong> Pues, madre, tengo que decirla.</p>
+                    <p><strong>Explicación:</strong> "he de" es equivalente a "tengo que" (je dois).</p>
+                    
+                    <p><strong>b. Ya no estoy solo en el mundo.</strong></p>
+                    <p><strong>Respuesta:</strong> Ya no me encuentro solo en el mundo.</p>
+                    <p><strong>Explicación:</strong> "estoy" puede ser reemplazado por "me encuentro" (je me trouve).</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Di lo contrario</span>
+                <div class="exercise-box">
+                    <p>Ella será también la antorcha</p>
+                </div>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Respuesta:</strong> Ella no será tampoco la antorcha.</p>
+                    <p><strong>Explicación:</strong> Para decir lo contrario, negamos la frase ("no será") y cambiamos "también" por "tampoco".</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">II - Produire un texte écrit</h2>
+            
+            <div class="question">
+                <p>Montre ta capacité à produire un texte écrit en tenant compte des indications suivantes :</p>
+                <ul>
+                    <li>La lettre majuscule indique le début et le point la fin d'une phrase</li>
+                    <li>Les phrases et le paragraphe doivent être cohérents pour produire un sens</li>
+                </ul>
+            </div>
+
+            <h3 class="problem-subtitle">A- Ordena los palabras, grupo de palabras y expresiones para en hacer frases correctas</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Porque / el bien del mal. / no suelen / los jóvenes / distinguir /</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Frase correcta:</strong> Los jóvenes no suelen distinguir el bien del mal porque...</p>
+                    <p><strong>Explicación:</strong> On organise les mots pour former une phrase logique avec un sujet ("Los jóvenes"), un verbe ("no suelen distinguir") et un complément ("el bien del mal").</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>le acompañan. / le orientan y / le dan consejos, / Sus padres /</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Frase correcta:</strong> Sus padres le dan consejos, le orientan y le acompañan.</p>
+                    <p><strong>Explicación:</strong> On commence par le sujet ("Sus padres") suivi des actions qu'ils réalisent ("le dan consejos, le orientan y le acompañan").</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>/ hace falta / nuestras ideas / Por eso, / siempre / con los mayores. / compartir /</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Frase correcta:</strong> Por eso, siempre hace falta compartir nuestras ideas con los mayores.</p>
+                    <p><strong>Explicación:</strong> On organise la phrase avec le connecteur "Por eso" en début, suivi de l'expression de la nécessité ("siempre hace falta") et de l'action ("compartir nuestras ideas con los mayores").</p>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>/ comunica sus proyectos / un joven / Cuando / está bien educado, / a sus padres. /</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Frase correcta:</strong> Cuando un joven está bien educado, comunica sus proyectos a sus padres.</p>
+                    <p><strong>Explicación:</strong> On forme une phrase complexe avec la proposition subordonnée "Cuando un joven está bien educado" et la proposition principale "comunica sus proyectos a sus padres".</p>
+                </div>
+            </div>
+
+            <h3 class="problem-subtitle">B- Ordena las frases así obtenidas para en hacer un párrafo coherente que define la conducta de un joven cuando tiene proyectos</h3>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Párrafo coherente:</strong></p>
+                    <div class="text-content">
+                        <p>Los jóvenes no suelen distinguir el bien del mal porque son inexpertos. Sus padres le dan consejos, le orientan y le acompañan. Por eso, siempre hace falta compartir nuestras ideas con los mayores. Cuando un joven está bien educado, comunica sus proyectos a sus padres.</p>
+                    </div>
+                    <p><strong>Explicación:</strong> On organise les phrases dans un ordre logique qui présente d'abord le problème (les jeunes ont du mal à distinguer le bien du mal), puis la solution (le rôle des parents), ensuite la conséquence (la nécessité de partager avec les aînés) et enfin le comportement idéal d'un jeune bien éduqué.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:khaledmouwaffak@gmail.com"><i class="fas fa-envelope"></i> khaledmouwaffak@gmail.com</a></li>
+                        <li><a href="tel:+22965655810"><i class="fas fa-phone"></i> +229 65655810</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Parakou, Bénin</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
