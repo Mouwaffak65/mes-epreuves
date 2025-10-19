@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - SVT - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Tableau des compétences */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .skills-table th, .skills-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .skills-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .skills-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .document-box {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .document-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-table th, .data-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+
+        .data-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .highlight {
+            background-color: #fff3cd !important;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+            
+            .skills-table, .data-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Sciences de la Vie et de la Terre</h1>
+                <p>Session Normale - COLLECTIF DES COLLÈGES PRIVÉS DU BORGOU</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Sciences de la Vie et de la Terre</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Grille d'évaluation</h2>
+            
+            <table class="skills-table">
+                <thead>
+                    <tr>
+                        <th>Compétences à évaluer</th>
+                        <th>Critères d'appréciation de la production</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            • Compétence disciplinaire n°1 et n°2<br>
+                            • Compétences transversales n°1 ; n°2 et n°8
+                        </td>
+                        <td>
+                            • <strong>Critères minimaux</strong><br>
+                            - Pertinence de la production au double plan de la démarche et du contenu<br>
+                            - Cohérence interne de la production<br>
+                            • <strong>Critère de perfectionnement</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Partie I : Restitution organisée de connaissances (06 points)</h2>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Montre, en prenant l'exemple de l'amidon et celui de l'albumine de l'œuf qui est un protide, que la digestion est un phénomène progressif.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Introduction :</strong> La digestion est un processus complexe qui transforme les aliments en nutriments assimilables par l'organisme. Ce phénomène est progressif, comme nous allons le montrer avec l'exemple de l'amidon (glucide) et de l'albumine (protide).</p>
+                    
+                    <div class="step">
+                        <div class="step-title">1. Digestion progressive de l'amidon</div>
+                        <p>L'amidon est un polysaccharide complexe qui subit une hydrolyse progressive :</p>
+                        <ul>
+                            <li><strong>Dans la bouche :</strong> Action de l'amylase salivaire qui transforme l'amidon en dextrines et maltose</li>
+                            <li><strong>Dans l'estomac :</strong> L'action amylasique est temporairement arrêtée par l'acidité gastrique</li>
+                            <li><strong>Dans l'intestin grêle :</strong> Action de l'amylase pancréatique qui poursuit la dégradation en maltose, puis action des maltases intestinales qui hydrolysent le maltose en glucose (monosaccharide assimilable)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">2. Digestion progressive de l'albumine</div>
+                        <p>L'albumine est une protéine complexe dont la digestion est également progressive :</p>
+                        <ul>
+                            <li><strong>Dans l'estomac :</strong> Action de la pepsine en milieu acide qui transforme les protéines en peptides et polypeptides</li>
+                            <li><strong>Dans l'intestin grêle :</strong> Action des enzymes pancréatiques (trypsine, chymotrypsine) et intestinales (peptidases) qui hydrolysent les peptides en acides aminés assimilables</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">3. Conclusion</div>
+                        <p>La digestion est donc un phénomène progressif car :</p>
+                        <ul>
+                            <li>Elle s'effectue en plusieurs étapes dans différents compartiments digestifs</li>
+                            <li>Elle fait intervenir successivement différentes enzymes spécifiques</li>
+                            <li>Elle transforme progressivement les macromolécules complexes (amidon, albumine) en molécules simples assimilables (glucose, acides aminés)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Partie II : Résolution de problème (12 points)</h2>
+            
+            <div class="question">
+                <p>Monsieur et Madame X, mariés depuis plusieurs années n'arrivent pas à avoir un enfant. Monsieur X, sous prétexte que sa famille n'a jamais connu d'homme infertile, est resté pendant toutes ces années à accuser son épouse d'être à l'origine de l'infertilité de leur couple. Sur conseil de leur parrain de mariage et après une longue période de réticence, Monsieur X accepta finalement d'aller avec son épouse consulter un médecin. Ce dernier a demandé entre autres examens, l'échographie de l'ovaire de Mme X à différents moments de son cycle, le dosage des hormones ovariennes dans son sang ainsi que le spermogramme de Monsieur X. Le document 1 présente les résultats d'examens de Madame X et le document 2 présente le résultat d'examen de Monsieur X.</p>
+            </div>
+
+            <div class="document-box">
+                <div class="document-title">Document de référence</div>
+                <p><strong>Figure 1 :</strong> Coupe d'ovaire montrant l'évolution normale du cycle ovarien</p>
+                <p><strong>Figure 2 :</strong> Courbes de variations des taux d'hormones ovariennes au cours d'un cycle normal chez une femme</p>
+                <ul>
+                    <li><strong>Progestérone :</strong> Hormone qui prépare l'utérus à la nidation et maintient la grossesse</li>
+                    <li><strong>Œstradiol :</strong> Hormone qui provoque l'ovulation et prépare la muqueuse utérine</li>
+                </ul>
+            </div>
+
+            <div class="document-box">
+                <div class="document-title">Document 1: Résultats d'examens de Madame X</div>
+                <p><strong>Figure 1 :</strong> image échographique de Madame X au 14ème jour de son cycle - Présence d'un follicule mature</p>
+                <p><strong>Figure 2 :</strong> image échographique de Madame X au 22ème jour de son cycle - Présence d'un corps jaune bien développé</p>
+                <p><strong>Figure 3 :</strong> courbes de variations des taux d'hormones ovariennes chez Madame X - Profil hormonal normal avec pic d'œstradiol avant l'ovulation et augmentation de la progestérone en phase lutéale</p>
+            </div>
+
+            <div class="document-box">
+                <div class="document-title">Document 2: Résultat d'examen de Monsieur X et valeurs de référence</div>
+                
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Critères de qualité du sperme Individus</th>
+                                <th>Concentrations des spermatozoïdes en millions/ml</th>
+                                <th>Forme vivante en %</th>
+                                <th>Forme anormale %</th>
+                                <th>Forme mobile %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Normal</td>
+                                <td>40 à 200</td>
+                                <td>> 80</td>
+                                <td>< 30</td>
+                                <td>> 80</td>
+                            </tr>
+                            <tr>
+                                <td>Anormal</td>
+                                <td>10 à 20</td>
+                                <td>50 à 70</td>
+                                <td>50 à 80</td>
+                                <td>40 à 60</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">Monsieur X</td>
+                                <td class="highlight">< 10</td>
+                                <td class="highlight">< 5</td>
+                                <td class="highlight">> 80</td>
+                                <td class="highlight">< 40</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Explique, à partir des informations tirées des documents fournis, la stérilité du couple X. Pour cela :</span>
+                <ul>
+                    <li>justifie que les ovaires de Madame X fonctionnent normalement ;</li>
+                    <li>compare les résultats de Monsieur X aux valeurs de référence ;</li>
+                    <li>tire la conclusion qui se dégage de la précédente comparaison en ce qui concerne Monsieur X ;</li>
+                    <li>explique alors la stérilité du couple.</li>
+                </ul>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <div class="step">
+                        <div class="step-title">a) Justification du fonctionnement normal des ovaires de Madame X</div>
+                        <p>Les ovaires de Madame X fonctionnent normalement car :</p>
+                        <ul>
+                            <li>L'échographie montre un follicule mature au 14ème jour (signe d'ovulation imminente)</li>
+                            <li>L'échographie montre un corps jaune bien développé au 22ème jour (preuve d'une ovulation effective)</li>
+                            <li>Le profil hormonal présente des variations normales : pic d'œstradiol avant l'ovulation et augmentation de la progestérone en phase lutéale</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">b) Comparaison des résultats de Monsieur X aux valeurs de référence</div>
+                        <p>Comparaison des paramètres spermatiques :</p>
+                        <ul>
+                            <li><strong>Concentration :</strong> < 10 millions/ml (très inférieur à la normale : 40-200 millions/ml)</li>
+                            <li><strong>Formes vivantes :</strong> < 5% (très inférieur à la normale : > 80%)</li>
+                            <li><strong>Formes anormales :</strong> > 80% (très supérieur à la normale : < 30%)</li>
+                            <li><strong>Mobilité :</strong> < 40% (très inférieur à la normale : > 80%)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">c) Conclusion concernant Monsieur X</div>
+                        <p>Monsieur X présente une <strong>oligo-asthéno-tératospermie sévère</strong>, c'est-à-dire :</p>
+                        <ul>
+                            <li><strong>Oligospermie :</strong> nombre insuffisant de spermatozoïdes</li>
+                            <li><strong>Asthénospermie :</strong> mobilité réduite des spermatozoïdes</li>
+                            <li><strong>Tératospermie :</strong> pourcentage élevé de formes anormales</li>
+                        </ul>
+                        <p>Tous ses paramètres spermatiques sont très éloignés des valeurs de référence, indiquant une infertilité masculine sévère.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">d) Explication de la stérilité du couple</div>
+                        <p>La stérilité du couple X s'explique par l'infertilité masculine sévère de Monsieur X :</p>
+                        <ul>
+                            <li>La faible concentration de spermatozoïdes réduit considérablement les chances de fécondation</li>
+                            <li>La faible mobilité empêche les spermatozoïdes d'atteindre l'ovocyte</li>
+                            <li>Le pourcentage élevé de formes anormales diminue la capacité de fécondation</li>
+                            <li>Le faible taux de spermatozoïdes vivants réduit encore les chances de succès</li>
+                        </ul>
+                        <p>Madame X ayant un fonctionnement ovarien normal, c'est bien l'infertilité de Monsieur X qui est responsable de la stérilité du couple.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Donne ton point de vue par rapport au comportement de certains hommes qui répudient leurs épouses pour cause d'infertilité du couple puis argumente.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="solution-box">
+                    <p><strong>Point de vue :</strong> Le comportement de certains hommes qui répudient leurs épouses pour cause d'infertilité du couple est injuste, irrationnel et préjudiciable.</p>
+                    
+                    <div class="step">
+                        <div class="step-title">Arguments :</div>
+                        <ol>
+                            <li><strong>L'infertilité peut être masculine :</strong> Comme le montre le cas du couple X, l'infertilité n'est pas toujours d'origine féminine. Dans environ 50% des cas, l'infertilité est masculine ou mixte.</li>
+                            <li><strong>Nécessité d'un diagnostic médical :</strong> Seul un examen médical complet des deux partenaires peut déterminer l'origine de l'infertilité.</li>
+                            <li><strong>Absence de faute :</strong> L'infertilité est une condition médicale et non une faute morale. Personne ne choisit d'être infertile.</li>
+                            <li><strong>Solidarité du couple :</strong> Face aux difficultés, le couple devrait faire preuve de solidarité et chercher ensemble des solutions (traitements, adoption, etc.).</li>
+                            <li><strong>Conséquences psychologiques :</strong> La répudiation aggrave le traumatisme de l'infertilité et peut causer des séquelles psychologiques profondes.</li>
+                            <li><strong>Égalité et respect :</strong> Dans une relation égalitaire, les problèmes sont abordés ensemble, sans accusation ni rejet de l'autre.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">Conclusion :</div>
+                        <p>Plutôt que de rejeter la faute sur la femme, les couples confrontés à l'infertilité devraient consulter ensemble un spécialiste, comprendre les causes réelles du problème et explorer les différentes options thérapeutiques disponibles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:khaledmouwaffak@gmail.com"><i class="fas fa-envelope"></i> khaledmouwaffak@gmail.com</a></li>
+                        <li><a href="tel:+22965655810"><i class="fas fa-phone"></i> +229 65655810</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Parakou, Bénin</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
