@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - Allemand - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Texte de l'épreuve */
+        .text-content {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+            line-height: 1.8;
+        }
+
+        .text-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            text-align: center;
+        }
+
+        .text-author {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1rem;
+            color: var(--gray);
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .answer-option {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        .text-quote {
+            background-color: #f8f9fa;
+            border-left: 3px solid var(--primary);
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Allemand</h1>
+                <p>Session Normale - COLLECTIF DES COLLÈGES PRIVÉS DU BORGOU</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Allemand</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Épreuve d'Allemand</h2>
+            <p><strong>CD2:</strong> Réagir de façon précise et appropriée des messages lus.</p>
+            <p><strong>CD3:</strong> Produire de façon appropriée des textes de types et de fonctions variés.</p>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">I - Leseverstehen</h2>
+            <p><strong>Contexte:</strong> le voyage.</p>
+            
+            <div class="text-content">
+                <div class="text-title">Marko und Maja am Flughafen</div>
+                
+                <p>Marko und Maja sind am Flughafen. Ihr Flug hat Verspätung. Für Marko ist das nichts neues, denn er reist sehr oft mit dem Flugzeug. Maja reist sehr selten mit dem Flugzeug, denn sie hat große Angst. Meistens fährt sie mit ihrem Auto oder kauft ein Ticket für den ICE. Sie befinden sich in der Türkei und dahin mussten sie mit dem Flugzeug fliegen. Sie haben noch zwei Stunden Zeit und trinken einen Kaffee und essen ein Stück Kuchen. Maja will Souvenirs für ihre Familie und Freunde kaufen und geht in den Souvenirladen. Nach zwei Stunden können sie endlich in das Flugzeug einsteigen. Maja sitzt am Fenster. Sie hat extra so einen Platz reserviert, weil sie Fotos machen will. Sie ist sehr gespannt. Das Flugzeug ist in der Luft und Marko ist sehr müde und möchte schlafen. Maja bestellt einen Kaffee und einen Orangensaft bei der Flugbegleiterin. Das ist für sie kostenlos. Drei Stunden später landet das Flugzeug in Berlin und sie sind endlich wieder in Deutschland.</p>
+                
+                <div class="text-author">
+                    Aus « Deutsch hören und lesen »
+                </div>
+            </div>
+
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-language"></i> Lesehilfe (Aide à la lecture)</h3>
+                <ul>
+                    <li><strong>die Sommerferien:</strong> les vacances d'été</li>
+                    <li><strong>sonnig sein:</strong> être ensoleillé</li>
+                    <li><strong>einige:</strong> certains</li>
+                    <li><strong>ans Meer oder in die Berge gehen:</strong> aller à la mer ou à la montagne</li>
+                    <li><strong>kostenlos:</strong> gratuit</li>
+                </ul>
+            </div>
+
+            <h3 class="problem-subtitle">Item 1: Antworte mit richtig oder falsch.</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Maja reist sehr oft mit dem Flugzeug.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> falsch</p>
+                <p><strong>Justification:</strong> "Maja reist sehr selten mit dem Flugzeug, denn sie hat große Angst."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Maja und Marko sind in der Türkei.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> richtig</p>
+                <p><strong>Justification:</strong> "Sie befinden sich in der Türkei und dahin mussten sie mit dem Flugzeug fliegen."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Maja macht Fotos durch das Fenster.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> richtig</p>
+                <p><strong>Justification:</strong> "Maja sitzt am Fenster. Sie hat extra so einen Platz reserviert, weil sie Fotos machen will."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Der Kaffee und der Orangensaft kosten Maja Geld.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> falsch</p>
+                <p><strong>Justification:</strong> "Das ist für sie kostenlos."</p>
+            </div>
+
+            <h3 class="problem-subtitle">Item 2: Beantworte die Fragen.</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Warum reist Maja selten mit dem Flugzeug?</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Weil sie große Angst hat.</p>
+                <p><strong>Justification:</strong> "Maja reist sehr selten mit dem Flugzeug, denn sie hat große Angst."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Womit fährt Maja oft?</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Mit ihrem Auto oder mit dem ICE.</p>
+                <p><strong>Justification:</strong> "Meistens fährt sie mit ihrem Auto oder kauft ein Ticket für den ICE."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Was möchte Maja kaufen?</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Souvenirs für ihre Familie und Freunde.</p>
+                <p><strong>Justification:</strong> "Maja will Souvenirs für ihre Familie und Freunde kaufen und geht in den Souvenirladen."</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Wie lange dauert die Reise?</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Drei Stunden.</p>
+                <p><strong>Justification:</strong> "Drei Stunden später landet das Flugzeug in Berlin..."</p>
+            </div>
+
+            <h3 class="problem-subtitle">Item 3: Bilde Relativsätze ab dem zweiten Satz.</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Maja will Fotos machen. Sie reserviert einen Platz am Fenster.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Maja, die Fotos machen will, reserviert einen Platz am Fenster.</p>
+                <p><strong>Explication:</strong> Transformation en phrase relative avec "die" (féminin singulier).</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Maja hat Freundinnen. Sie kauft ihnen Souvenirs.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Maja, die Freundinnen hat, kauft ihnen Souvenirs.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Maja ist die Freundin. Marko fliegt mit ihr in die Türkei.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Maja ist die Freundin, mit der Marko in die Türkei fliegt.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Maja mag den Zug. Sie hat keine Angst vor dem Zug.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Maja mag den Zug, vor dem sie keine Angst hat.</p>
+            </div>
+
+            <h3 class="problem-subtitle">Item 4: Schreib ins Perfekt.</h3>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span>Die Reise dauert ein paar Stunden.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Die Reise hat ein paar Stunden gedauert.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">2</span>
+                <span>Sie reist oft mit dem Auto.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Sie ist oft mit dem Auto gereist.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">3</span>
+                <span>Maja und Marko gehen in Souvenirladen.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Maja und Marko sind in den Souvenirladen gegangen.</p>
+            </div>
+            
+            <div class="question">
+                <span class="question-number">4</span>
+                <span>Am Fenster macht Maja schöne Fotos.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Réponse:</strong> Am Fenster hat Maja schöne Fotos gemacht.</p>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">II - Textproduktion</h2>
+            <p><strong>Contexte:</strong> les projets pour de vacances.</p>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span><strong>Anweisung:</strong> Was hast du in den Ferien vor? Wohin möchtest gehen? Mit welchem Transportsmittel? Was besuchst du dort? Erzähle.</span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                <p><strong>Consignes pour la production écrite:</strong></p>
+                <ul>
+                    <li>Produire un paragraphe cohérent sur ton programme pour les vacances</li>
+                    <li>Respecter le contexte et la logique du texte</li>
+                    <li>Utiliser le vocabulaire adéquat</li>
+                    <li>Utiliser l'orthographe et la ponctuation appropriées</li>
+                    <li>Ne pas recopier le texte, mais faire un effort de construction d'un paragraphe</li>
+                    <li>Parler des différentes activités à mener pendant les vacances</li>
+                </ul>
+                
+                <div class="solution-box">
+                    <p><strong>Exemple de réponse:</strong></p>
+                    <p>In den Sommerferien möchte ich mit meiner Familie nach Frankreich fahren. Wir werden mit dem Auto fahren, weil das praktisch ist. Zuerst besuchen wir Paris. Dort möchte ich den Eiffelturm und den Louvre sehen. Dann fahren wir an die Côte d'Azur. Ich will am Strand schwimmen und Sonnenbaden. Außerdem möchte ich Französisch üben, weil ich diese Sprache in der Schule lerne. Meine Eltern wollen Wein probieren und Museen besichtigen. Ich freue mich schon sehr auf diese Reise!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
