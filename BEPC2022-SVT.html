@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPC 2022 - SVT - MesEpreuves</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Bannière publicitaire */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ad-banner {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-banner i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Informations sur l'examen */
+        .exam-info {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Tableau des compétences */
+        .competence-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .competence-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .competence-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .competence-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Sections de problèmes */
+        .problem-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .problem-title {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .problem-subtitle {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .question-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Documents */
+        .document {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .document-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .document-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .document-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        .document-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .document-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .histogram {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+
+        .histogram-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .bar-container {
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            height: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .bar {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bar-fill {
+            width: 80%;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .bar-label {
+            margin-top: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        /* Correction */
+        .correction {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .correction-title {
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .correction-title i {
+            margin-right: 10px;
+        }
+
+        .step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-box {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            
+            .problem-section {
+                padding: 1.5rem;
+            }
+            
+            .exam-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                justify-content: center;
+            }
+            
+            .ad-banner {
+                height: 100px;
+                max-width: 320px;
+            }
+            
+            .bar-container {
+                flex-direction: column;
+                height: auto;
+                align-items: center;
+            }
+            
+            .bar {
+                width: 80%;
+                margin-bottom: 1rem;
+                flex-direction: row;
+                height: 40px;
+            }
+            
+            .bar-fill {
+                height: 100%;
+                width: 100%;
+                border-radius: 5px;
+            }
+            
+            .bar-label {
+                margin-top: 0;
+                margin-left: 1rem;
+                width: 40%;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>MesEpreuves</span>
+                </div>
+            </a>
+            <div class="header-text">
+                <h1>BEPC 2022 - Sciences de la Vie et de la Terre</h1>
+                <p>Session Normale - DEC-MESTEP</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière publicitaire -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <div class="info-item">
+                <span class="info-label">Discipline</span>
+                <span>Sciences de la Vie et de la Terre</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Durée</span>
+                <span>02 heures</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Session</span>
+                <span>Normale</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Coefficient</span>
+                <span>02</span>
+            </div>
+        </div>
+
+        <table class="competence-table">
+            <thead>
+                <tr>
+                    <th>COMPÉTENCES À ÉVALUER</th>
+                    <th>CRITÈRES D'APPRÉCIATION DE TA COPIE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">CD1, CT1, CT2, CT8</td>
+                    <td><strong>Critères minimaux : 18 pts</strong><br>
+                    ✓ Pertinence de la production au double plan de la démarche et du contenu<br>
+                    ✓ Cohérence interne de la production</td>
+                </tr>
+                <tr>
+                    <td><strong>Critères de perfectionnement : 2 pts</strong><br>
+                    ✓ Présentation matérielle de la production<br>
+                    ✓ Originalité de la production</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Partie I : Restitution organisée de connaissances (06 points)</h2>
+            
+            <div class="question">
+                <span class="question-number">1</span>
+                <span><strong>Explique en quoi un mauvais fonctionnement du foie peut être à l'origine d'une glycosurie.</strong></span>
+            </div>
+            
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="step">
+                    <div class="step-title">Rappel physiologique</div>
+                    <p>Le foie joue un rôle essentiel dans la régulation de la glycémie (taux de glucose dans le sang) grâce à :</p>
+                    <ul>
+                        <li>La glycogénogenèse : transformation du glucose en glycogène (stockage)</li>
+                        <li>La glycogénolyse : transformation du glycogène en glucose (libération)</li>
+                        <li>La néoglucogenèse : production de glucose à partir d'autres substances</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Mécanisme de la glycosurie</div>
+                    <p>La glycosurie est l'élimination de glucose dans les urines. Normalement, le glucose est entièrement réabsorbé au niveau des reins quand la glycémie est inférieure à 1,8 g/L (seuil rénal).</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Lien entre foie et glycosurie</div>
+                    <p>Un mauvais fonctionnement du foie peut provoquer une glycosurie par :</p>
+                    <ul>
+                        <li><strong>Diminution du stockage du glucose</strong> : le foie ne peut plus stocker correctement le glucose sous forme de glycogène</li>
+                        <li><strong>Production excessive de glucose</strong> : même en période post-prandiale (après les repas), le foie continue à produire du glucose</li>
+                        <li><strong>Résistance à l'insuline</strong> : le foie ne répond plus correctement à l'insuline qui devrait inhiber la production de glucose</li>
+                    </ul>
+                    <p>Ces dysfonctionnements entraînent une <strong>hyperglycémie persistante</strong> qui dépasse le seuil rénal, provoquant l'élimination du glucose dans les urines = glycosurie.</p>
+                </div>
+                
+                <div class="solution-box">
+                    <p><strong>Réponse synthétique :</strong></p>
+                    <p>Un mauvais fonctionnement du foie perturbe la régulation de la glycémie. Le foie ne stocke plus correctement le glucose et peut en produire de façon excessive. Cela entraîne une hyperglycémie qui dépasse le seuil de réabsorption rénale (1,8 g/L). Le glucose n'étant plus réabsorbé par les reins, il est éliminé dans les urines, ce qui constitue la glycosurie.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="problem-section">
+            <h2 class="problem-title">Partie II : Résolution de problème à partir de documents fournis (12 points)</h2>
+            
+            <div class="question">
+                <p><strong>Contexte :</strong> Deux femmes allaitantes X et Y échangent au sujet de l'alimentation de leurs bébés. Madame X nourrit son bébé au biberon avec du lait artificiel, tandis que Madame Y allaite son bébé avec son propre lait. Chacune vante la qualité de l'alimentation de son bébé.</p>
+                <p><strong>Problème :</strong> Exploite les informations tirées des documents fournis pour préciser lequel des deux types d'allaitement est le plus indiqué pour le nouveau-né.</p>
+            </div>
+
+            <div class="document">
+                <div class="document-title">Document 1 : compositions du lait maternel et du lait artificiel</div>
+                <table class="document-table">
+                    <thead>
+                        <tr>
+                            <th>Constituants en g/L</th>
+                            <th>Lait maternel</th>
+                            <th>Lait artificiel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Protides</td>
+                            <td>15</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>Lipides</td>
+                            <td>34</td>
+                            <td>36</td>
+                        </tr>
+                        <tr>
+                            <td>Glucides</td>
+                            <td>67</td>
+                            <td>69</td>
+                        </tr>
+                        <tr>
+                            <td>Sels minéraux</td>
+                            <td>2</td>
+                            <td>2,5 à 4</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamines</td>
+                            <td>++ dont vitamine D</td>
+                            <td>+ sans vitamine D</td>
+                        </tr>
+                        <tr>
+                            <td>Anticorps</td>
+                            <td>++</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em>NB : + indique la présence de la substance ; le nombre de + indique la quantité</em></p>
+            </div>
+
+            <div class="document">
+                <div class="document-title">Document 2 : sensibilité à certains agents pathogènes d'enfants nourris aux deux types de lait</div>
+                <div class="histogram">
+                    <div class="histogram-title">Résistance aux infections (en unités arbitraires)</div>
+                    <div class="bar-container">
+                        <div class="bar">
+                            <div class="bar-fill" style="height: 80%; background-color: #4361ee;"></div>
+                            <div class="bar-label">Dysenterie amibienne</div>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="height: 70%; background-color: #4361ee;"></div>
+                            <div class="bar-label">Mycose</div>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="height: 75%; background-color: #4361ee;"></div>
+                            <div class="bar-label">Grippe</div>
+                        </div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar">
+                            <div class="bar-fill" style="height: 40%; background-color: #7209b7;"></div>
+                            <div class="bar-label">Dysenterie amibienne</div>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="height: 35%; background-color: #7209b7;"></div>
+                            <div class="bar-label">Mycose</div>
+                        </div>
+                        <div class="bar">
+                            <div class="bar-fill" style="height: 45%; background-color: #7209b7;"></div>
+                            <div class="bar-label">Grippe</div>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #4361ee;"></div>
+                            <span>Enfants nourris au lait maternel</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #7209b7;"></div>
+                            <span>Enfants nourris au lait artificiel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="document">
+                <div class="document-title">Document 3 : production d'anticorps par le nouveau-né</div>
+                <p>Pendant la grossesse, le fœtus est en principe à l'abri de toute infection, bien que son système immunitaire soit encore incapable de fabriquer des anticorps. Cette protection est due au fait que la plupart des anticorps maternels peuvent traverser le placenta et passer ainsi dans la circulation sanguine du fœtus.</p>
+                <p>Après la naissance, le système immunitaire devient progressivement fonctionnel, ce qui permet au nouveau-né de produire ses propres anticorps.</p>
+            </div>
+
+            <div class="correction">
+                <h3 class="correction-title"><i class="fas fa-check-circle"></i> Correction</h3>
+                
+                <div class="step">
+                    <div class="step-title">1. Différences de composition entre le lait artificiel et le lait maternel</div>
+                    <p>D'après le document 1 :</p>
+                    <ul>
+                        <li><strong>Anticorps</strong> : Présents en grande quantité dans le lait maternel (++) et totalement absents du lait artificiel (0)</li>
+                        <li><strong>Vitamines</strong> : Plus abondantes dans le lait maternel (++) qui contient notamment de la vitamine D, alors que le lait artificiel en contient peu (+) et sans vitamine D</li>
+                        <li><strong>Sels minéraux</strong> : Légèrement plus concentrés dans le lait artificiel (2,5-4 g/L) que dans le lait maternel (2 g/L)</li>
+                        <li><strong>Protides, lipides, glucides</strong> : Concentrations similaires dans les deux laits</li>
+                    </ul>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">2. Protection contre les infections</div>
+                    <p>D'après le document 2 :</p>
+                    <ul>
+                        <li>Les enfants nourris au <strong>lait maternel</strong> présentent une résistance nettement supérieure aux infections (dysenterie amibienne, mycose, grippe)</li>
+                        <li>Les enfants nourris au <strong>lait artificiel</strong> ont une résistance beaucoup plus faible à ces mêmes infections</li>
+                    </ul>
+                    <p>D'après le document 3 :</p>
+                    <ul>
+                        <li>Le nouveau-né a un système immunitaire encore immature et ne produit pas encore suffisamment d'anticorps</li>
+                        <li>Pendant la grossesse, il était protégé par les anticorps maternels qui traversaient le placenta</li>
+                    </ul>
+                    <p><strong>Conclusion :</strong> Le lait maternel protège mieux contre les infections grâce à sa richesse en anticorps.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">3. Qualité de l'allaitement</div>
+                    <p>En synthétisant les informations des trois documents :</p>
+                    <ul>
+                        <li>Le <strong>lait maternel</strong> apporte des anticorps qui compensent l'immaturité du système immunitaire du nouveau-né</li>
+                        <li>Il contient plus de vitamines, essentielles à la croissance et au développement</li>
+                        <li>Il confère une meilleure protection contre les infections, comme le montre le document 2</li>
+                        <li>Le <strong>lait artificiel</strong>, bien que similaire en nutriments de base, ne contient pas d'anticorps et moins de vitamines</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-box">
+                    <p><strong>Conclusion finale :</strong></p>
+                    <p>L'allaitement maternel est le plus indiqué pour le nouveau-né car :</p>
+                    <ol>
+                        <li>Il apporte des anticorps essentiels pour protéger le bébé contre les infections pendant que son système immunitaire devient fonctionnel</li>
+                        <li>Il est plus riche en vitamines, notamment en vitamine D importante pour la croissance</li>
+                        <li>Il confère une meilleure résistance aux maladies infectieuses, comme le démontre le document 2</li>
+                        <li>Il comble parfaitement le déficit immunitaire temporaire du nouveau-né décrit dans le document 3</li>
+                    </ol>
+                    <p>Ainsi, contrairement à Madame X, Madame Y a raison de suivre les conseils des professionnels de santé et d'allaiter son bébé avec son propre lait.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bannière publicitaire -->
+        <div class="ad-container">
+            <div class="ad-banner">
+                <i class="fas fa-ad"></i>
+                <span>Espace publicitaire</span>
+                <small>Annonce AdMob</small>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MesEpreuves</h3>
+                    <p>Plateforme de consultation d'épreuves d'examen pour les étudiants et élèves de bac.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="apropos.html"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="mailto:contact@mesepreuves.com"><i class="fas fa-envelope"></i> contact@mesepreuves.com</a></li>
+                        <li><a href="tel:+33123456789"><i class="fas fa-phone"></i> +33 1 23 45 67 89</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Paris, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="cookies.html">Politique des cookies</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MesEpreuves. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
